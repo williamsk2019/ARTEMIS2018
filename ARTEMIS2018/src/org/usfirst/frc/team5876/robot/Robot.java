@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 
 public class Robot extends IterativeRobot {
@@ -43,6 +45,16 @@ public class Robot extends IterativeRobot {
 		 SpeedController driveLeftBack = new VictorSP(1);
 		 SpeedController driveRightFront = new VictorSP(2);
 		 SpeedController driveRightBack = new VictorSP(3);
+		 
+		 Compressor c = new Compressor(0);
+	
+		 c.setClosedLoopControl(true);
+		 c.setClosedLoopControl(false);
+		 DoubleSolenoid Double = new DoubleSolenoid(1, 2);
+
+		 Double.set(DoubleSolenoid.Value.kOff);
+		 Double.set(DoubleSolenoid.Value.kForward);
+		 Double.set(DoubleSolenoid.Value.kReverse);
 		
 		 timer = new Timer();
 		 gyro = new ADXRS450_Gyro();
@@ -69,27 +81,56 @@ public class Robot extends IterativeRobot {
 			 Timer.delay(0.01);
 		 }
 		 switch (autoSelected) {
+		 
 		 case 1:
-			 // Put custom auto code here
 			 System.out.println(gyro.getAngle());
-			 System.out.println("Auto 1");
+			 System.out.println("Left Switch (centre)");
 
 			 break;
+			 
+			 
 		 case 2:
-			 // Put custom auto code here
 			 System.out.println(gyro.getAngle());
-			 System.out.println("Auto 2");
+			 System.out.println("Right Switch (centre)");
 
 			
 			 break;
+		
+		 case 3:
+			 System.out.println(gyro.getAngle());
+			 System.out.println("Left Switch (turn right)");
+			 
+			 
+			 break;
+			 
+		 case 4:
+			 System.out.println(gyro.getAngle());
+			 System.out.println("Right Switch (turn left)");
+			 
+			 
+			 break;
+			 
 		 case 0:
 		 default:
 			 // Put default auto code here
 			 System.out.println(gyro.getAngle());
-			 System.out.println("Auto 0");
+			 System.out.println("Baseline");
 
-			 if (timer.get() < 2.5) {
-				 robotDrive.arcadeDrive(-0.5, 0);
+
+				if (timer.get() < 1.5){
+					double angle = gyro.getAngle();
+					double Kp = 0.05;
+					robotDrive.arcadeDrive(-0.35, angle * Kp);
+					Timer.delay(0.01);
+				}
+
+				else if (timer.get() < 5.2) {
+					
+					double angle = gyro.getAngle();
+					double Kp = 0.05;
+					robotDrive.arcadeDrive(-0.5, angle * Kp);
+					
+					Timer.delay(0.01);
 			 }
 			 break;
 		 }
