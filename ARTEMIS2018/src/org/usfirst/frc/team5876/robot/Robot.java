@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 
+@SuppressWarnings("deprecation")
 public class Robot extends IterativeRobot {
 	final Integer baseline = new Integer(0);
 	final Integer leftPlaceCentre = new Integer(1);
