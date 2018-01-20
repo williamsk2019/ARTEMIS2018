@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5876.robot;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -28,8 +29,9 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Integer> chooser = new SendableChooser<Integer>();
 	ADXRS450_Gyro gyro;
 	Timer timer;
-
+	BuiltInAccelerometer accel;
 	
+
 	 @Override
 	 public void robotInit() {
 		 chooser.addDefault("Baseline", baseline);
@@ -47,6 +49,7 @@ public class Robot extends IterativeRobot {
 		 SpeedController driveLeftBack = new VictorSP(1);
 		 SpeedController driveRightFront = new VictorSP(2);
 		 SpeedController driveRightBack = new VictorSP(3);
+		 accel = new BuiltInAccelerometer();
 		 
 		 Compressor c = new Compressor(0);
 	
@@ -85,37 +88,37 @@ public class Robot extends IterativeRobot {
 		 switch (autoSelected) {
 		 
 		 case 1:
-			 System.out.println(gyro.getAngle());
 			 System.out.println("Left Switch (centre)");
+			 System.out.println("X=" + accel.getX() + ", Y=" + accel.getY() + ", Z=" + accel.getZ() + ", gyro=" + gyro.getAngle());
 
 			 break;
 			 
 			 
 		 case 2:
-			 System.out.println(gyro.getAngle());
 			 System.out.println("Right Switch (centre)");
+			 System.out.println("X=" + accel.getX() + ", Y=" + accel.getY() + ", Z=" + accel.getZ() + ", gyro=" + gyro.getAngle());
 
 			
 			 break;
 		
 		 case 3:
-			 System.out.println(gyro.getAngle());
 			 System.out.println("Left Switch (turn right)");
+			 System.out.println("X=" + accel.getX() + ", Y=" + accel.getY() + ", Z=" + accel.getZ() + ", gyro=" + gyro.getAngle());
 			 
 			 
 			 break;
 			 
 		 case 4:
-			 System.out.println(gyro.getAngle());
 			 System.out.println("Right Switch (turn left)");
+			 System.out.println("X=" + accel.getX() + ", Y=" + accel.getY() + ", Z=" + accel.getZ() + ", gyro=" + gyro.getAngle());
 			 
 			 
 			 break;
 			 
 		 case 0:
 		 default:
-			 System.out.println(gyro.getAngle());
 			 System.out.println("Baseline");
+			 System.out.println("X=" + accel.getX() + ", Y=" + accel.getY() + ", Z=" + accel.getZ() + ", gyro=" + gyro.getAngle());
 
 
 				if (timer.get() < 1.5){
@@ -140,7 +143,7 @@ public class Robot extends IterativeRobot {
 	
 	 @Override
 	 public void teleopPeriodic() {
-		 System.out.println(gyro.getAngle());
+		 System.out.println("X=" + accel.getX() + ", Y=" + accel.getY() + ", Z=" + accel.getZ() + ", gyro=" + gyro.getAngle());
 	
 		 int pov = stick.getPOV();
 		 int povTurn = gamepad.getPOV();
