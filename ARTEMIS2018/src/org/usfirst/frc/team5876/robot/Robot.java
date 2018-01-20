@@ -52,7 +52,7 @@ public class Robot extends IterativeRobot {
 	
 		 c.setClosedLoopControl(true);
 		 c.setClosedLoopControl(false);
-		 DoubleSolenoid Double = new DoubleSolenoid(1, 2);
+		 DoubleSolenoid Double = new DoubleSolenoid(2, 3);
 
 		 Double.set(DoubleSolenoid.Value.kOff);
 		 Double.set(DoubleSolenoid.Value.kForward);
@@ -180,9 +180,21 @@ public class Robot extends IterativeRobot {
 			 robotDrive.arcadeDrive((stick.getRawAxis(1)), -(gamepad.getRawAxis(0)), true);
 		 }
 		
-		if (gamepad.getRawButton(1)==true);
+		if (gamepad.getRawButton(1)==true){
+			//clamp claw
+		}
 		
-
+		else if(controller.getRawButton(1)==true) {
+			//release claw
+		}
+		
+		else if(controller.getRawButton(2)== true) {
+			//up
+		}
+		else if(controller.getRawButton(3)==true) {
+			//down
+		}
+		
 		  
 	 }
 
