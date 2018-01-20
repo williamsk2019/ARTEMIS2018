@@ -112,7 +112,6 @@ public class Robot extends IterativeRobot {
 			 
 		 case 0:
 		 default:
-			 // Put default auto code here
 			 System.out.println(gyro.getAngle());
 			 System.out.println("Baseline");
 
@@ -145,9 +144,7 @@ public class Robot extends IterativeRobot {
 		 int povTurn = gamepad.getPOV();
 		 float slow = 0.5f;
 		 float turn = 0, forward = 0;
-		 if (gamepad.getRawButton(2)) {
-			 
-		 }
+		 
 		 if (pov != -1 || povTurn != -1) {
 			 switch (pov) {
 			 case 0:
@@ -181,7 +178,7 @@ public class Robot extends IterativeRobot {
 			 robotDrive.arcadeDrive((stick.getRawAxis(1)), -(gamepad.getRawAxis(0)), true);
 		 }
 		
-		
+		if (gamepad.getRawButton(1)==true);
 
 		  
 	 }
