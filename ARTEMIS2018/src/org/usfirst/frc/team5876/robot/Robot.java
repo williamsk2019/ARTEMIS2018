@@ -24,6 +24,7 @@ public class Robot extends IterativeRobot {
 	RobotDrive robotDrive;
 	Joystick stick;
 	Joystick gamepad;
+	Joystick controller;
 	SendableChooser<Integer> chooser = new SendableChooser<Integer>();
 	ADXRS450_Gyro gyro;
 	Timer timer;
@@ -41,6 +42,7 @@ public class Robot extends IterativeRobot {
 		 
 		 stick = new Joystick(0);
 		 gamepad = new Joystick(1);
+		 controller = new Joystick(2);
 		 SpeedController driveLeftFront = new VictorSP(0);
 		 SpeedController driveLeftBack = new VictorSP(1);
 		 SpeedController driveRightFront = new VictorSP(2);
@@ -179,6 +181,7 @@ public class Robot extends IterativeRobot {
 		 }
 		
 		if (gamepad.getRawButton(1)==true);
+		
 
 		  
 	 }
