@@ -12,15 +12,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.CameraServer;
+
 
 
 @SuppressWarnings("deprecation")
 public class Robot extends IterativeRobot {
 	final Integer baseline = new Integer(0);
-	final Integer leftPlaceCentre = new Integer(1);
-	final Integer rightPlaceCentre = new Integer(2);
-	final Integer leftCubePlace = new Integer(3);
-	final Integer rightCubePlace = new Integer(4);
+	final Integer pos1 = new Integer(1);
+	final Integer pos2 = new Integer(2);
+	final Integer pos3 = new Integer(3);
 	Integer autoSelected;
 
 	RobotDrive robotDrive;
@@ -31,15 +33,15 @@ public class Robot extends IterativeRobot {
 	ADXRS450_Gyro gyro;
 	Timer timer;
 	BuiltInAccelerometer accel;
+	DoubleSolenoid eDouble;
 	
 
 	 @Override
 	 public void robotInit() {
 		 chooser.addDefault("Baseline", baseline);
-		 chooser.addObject("Left Switch (centre)", leftPlaceCentre);
-		 chooser.addObject("Right Switch (centre)", rightPlaceCentre);
-		 chooser.addObject("Left Switch (turn right)", leftCubePlace);
-		 chooser.addObject("Right Switch (turn left)", rightCubePlace);
+		 chooser.addObject("Position 1 (left)", pos1);
+		 chooser.addObject("Position 2 (centre)", pos2);
+		 chooser.addObject("Position 3 (right)", pos3);
 		 SmartDashboard.putData("Auto choices", chooser);
 		 
 		 
@@ -56,16 +58,17 @@ public class Robot extends IterativeRobot {
 	
 		 c.setClosedLoopControl(true);
 		 c.setClosedLoopControl(false);
-		 DoubleSolenoid Double = new DoubleSolenoid(2, 3);
+		 eDouble = new DoubleSolenoid(2, 3);
 
-		 Double.set(DoubleSolenoid.Value.kOff);
-		 Double.set(DoubleSolenoid.Value.kForward);
-		 Double.set(DoubleSolenoid.Value.kReverse);
+		 eDouble.set(DoubleSolenoid.Value.kOff);
+		// eDouble.set(DoubleSolenoid.Value.kForward);
+		 //eDouble.set(DoubleSolenoid.Value.kReverse);
 		
 		 timer = new Timer();
 		 gyro = new ADXRS450_Gyro();
 		 gyro.calibrate();
 		 robotDrive = new RobotDrive(driveLeftFront, driveLeftBack, driveRightFront, driveRightBack);
+		 CameraServer.getInstance().startAutomaticCapture();
 	 }
 
 	 @Override
@@ -75,46 +78,91 @@ public class Robot extends IterativeRobot {
 		 gyro.reset();
 		 autoSelected = chooser.getSelected();
 		 System.out.println("Auto selected: " + autoSelected);
+		 
 	 }
 
 	
 	 @Override
 	 public void autonomousPeriodic() {
-		 while (isAutonomous() && isEnabled()){
+		 	String gameData;
+		 //while (isAutonomous() && isEnabled()){
 			 double angle = gyro.getAngle();
 			 double Kp = 0.03;
 			 robotDrive.arcadeDrive(-1.0, -angle * Kp);
 			 Timer.delay(0.01);
-		 }
+			 gameData = DriverStation.getInstance().getGameSpecificMessage();
+		// }
 		 switch (autoSelected) {
 		 
 		 case 1:
-			 System.out.println("Left Switch (centre)");
+			 System.out.println("Position 1 (left)");
 			 System.out.println("X=" + accel.getX() + ", Y=" + accel.getY() + ", Z=" + accel.getZ() + ", gyro=" + gyro.getAngle());
+			 
+			 if(gameData.charAt(0)=='L') {
+				 
+			 }
+			 
+			 else {
+				 if (timer.get() < 1.5){
+						angle = gyro.getAngle();
+						Kp = 0.05;
+						robotDrive.arcadeDrive(-0.35, angle * Kp);
+						Timer.delay(0.01);
+					}
 
+					else if (timer.get() < 5.2) {
+						
+						angle = gyro.getAngle();
+						Kp = 0.05;
+						robotDrive.arcadeDrive(-0.5, angle * Kp);
+						
+						Timer.delay(0.01);
+				 }
+			 }
 			 break;
 			 
 			 
 		 case 2:
-			 System.out.println("Right Switch (centre)");
+			 System.out.println("Position 2 (centre)");
 			 System.out.println("X=" + accel.getX() + ", Y=" + accel.getY() + ", Z=" + accel.getZ() + ", gyro=" + gyro.getAngle());
 
+			 if(gameData.charAt(0)=='R') {
+				 
+			 }
+			 
+			 else {
+				 
+			 }
 			
 			 break;
 		
 		 case 3:
-			 System.out.println("Left Switch (turn right)");
+			 System.out.println("Postion 3 (right)");
 			 System.out.println("X=" + accel.getX() + ", Y=" + accel.getY() + ", Z=" + accel.getZ() + ", gyro=" + gyro.getAngle());
 			 
+			 if(gameData.charAt(0)=='R') {
+				 
+			 }
 			 
+			 else {
+				 if (timer.get() < 1.5){
+						angle = gyro.getAngle();
+						Kp = 0.05;
+						robotDrive.arcadeDrive(-0.35, angle * Kp);
+						Timer.delay(0.01);
+					}
+
+					else if (timer.get() < 5.2) {
+						
+						angle = gyro.getAngle();
+						Kp = 0.05;
+						robotDrive.arcadeDrive(-0.5, angle * Kp);
+						
+						Timer.delay(0.01);
+				 }
+			 }
 			 break;
 			 
-		 case 4:
-			 System.out.println("Right Switch (turn left)");
-			 System.out.println("X=" + accel.getX() + ", Y=" + accel.getY() + ", Z=" + accel.getZ() + ", gyro=" + gyro.getAngle());
-			 
-			 
-			 break;
 			 
 		 case 0:
 		 default:
@@ -123,16 +171,16 @@ public class Robot extends IterativeRobot {
 
 
 				if (timer.get() < 1.5){
-					double angle = gyro.getAngle();
-					double Kp = 0.05;
+					angle = gyro.getAngle();
+					Kp = 0.05;
 					robotDrive.arcadeDrive(-0.35, angle * Kp);
 					Timer.delay(0.01);
 				}
 
 				else if (timer.get() < 5.2) {
 					
-					double angle = gyro.getAngle();
-					double Kp = 0.05;
+					angle = gyro.getAngle();
+					Kp = 0.05;
 					robotDrive.arcadeDrive(-0.5, angle * Kp);
 					
 					Timer.delay(0.01);
@@ -186,10 +234,19 @@ public class Robot extends IterativeRobot {
 		
 		if (gamepad.getRawButton(1)==true){
 			//clamp claw
+			eDouble.set(DoubleSolenoid.Value.kForward);
 		}
 		
 		else if(controller.getRawButton(1)==true) {
 			//release claw
+		}
+		
+		else if(gamepad.getRawButton(3)==true) {
+			//wheels in
+	 	}
+		
+		else if(stick.getRawButton(4)==true) {
+			//wheels out
 		}
 		
 		else if(controller.getRawButton(2)== true) {
