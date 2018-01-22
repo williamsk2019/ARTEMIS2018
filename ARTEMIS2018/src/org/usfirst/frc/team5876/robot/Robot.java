@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.CameraServer;
+//import edu.wpi.first.wpilibj.CameraServer;
 
 
 
@@ -34,6 +34,12 @@ public class Robot extends IterativeRobot {
 	Timer timer;
 	BuiltInAccelerometer accel;
 	DoubleSolenoid eDouble;
+	Compressor compressor;
+	 SpeedController driveLeftFront;
+	 SpeedController driveLeftBack;
+	 SpeedController driveRightFront;
+	 SpeedController driveRightBack;
+	 Compressor c;
 	
 
 	 @Override
@@ -48,13 +54,13 @@ public class Robot extends IterativeRobot {
 		 stick = new Joystick(0);
 		 gamepad = new Joystick(1);
 		 controller = new Joystick(2);
-		 SpeedController driveLeftFront = new VictorSP(0);
-		 SpeedController driveLeftBack = new VictorSP(1);
-		 SpeedController driveRightFront = new VictorSP(2);
-		 SpeedController driveRightBack = new VictorSP(3);
+		  driveLeftFront = new VictorSP(0);
+		  driveLeftBack = new VictorSP(1);
+		 driveRightFront = new VictorSP(2);
+		  driveRightBack = new VictorSP(3);
 		 accel = new BuiltInAccelerometer();
 		 
-		 Compressor c = new Compressor(0);
+		  c = new Compressor(0);
 	
 		 c.setClosedLoopControl(true);
 		 c.setClosedLoopControl(false);
@@ -68,7 +74,7 @@ public class Robot extends IterativeRobot {
 		 gyro = new ADXRS450_Gyro();
 		 gyro.calibrate();
 		 robotDrive = new RobotDrive(driveLeftFront, driveLeftBack, driveRightFront, driveRightBack);
-		 CameraServer.getInstance().startAutomaticCapture();
+		// CameraServer.getInstance().startAutomaticCapture();
 	 }
 
 	 @Override
@@ -198,6 +204,7 @@ public class Robot extends IterativeRobot {
 		 int povTurn = gamepad.getPOV();
 		 float slow = 0.5f;
 		 float turn = 0, forward = 0;
+		 compressor.start();
 		 
 		 if (pov != -1 || povTurn != -1) {
 			 switch (pov) {
@@ -236,25 +243,28 @@ public class Robot extends IterativeRobot {
 			//clamp claw
 			eDouble.set(DoubleSolenoid.Value.kForward);
 		}
-		
-		else if(controller.getRawButton(1)==true) {
-			//release claw
+		else {
+			eDouble.set(DoubleSolenoid.Value.kReverse);
 		}
+//		
+//		if(controller.getRawButton(1)==true) {
+//			//release claw
+////		}
+//		
+//		else if(gamepad.getRawButton(3)==true) {
+//			//wheels in
+//	 	}
 		
-		else if(gamepad.getRawButton(3)==true) {
-			//wheels in
-	 	}
-		
-		else if(stick.getRawButton(4)==true) {
-			//wheels out
-		}
-		
-		else if(controller.getRawButton(2)== true) {
-			//up
-		}
-		else if(controller.getRawButton(3)==true) {
-			//down
-		}
+//		else if(stick.getRawButton(4)==true) {
+//			//wheels out
+//		}
+//		
+//		else if(controller.getRawButton(2)== true) {
+//			//up
+//		}
+//		else if(controller.getRawButton(3)==true) {
+//			//down
+//		}
 		
 		  
 	 }
