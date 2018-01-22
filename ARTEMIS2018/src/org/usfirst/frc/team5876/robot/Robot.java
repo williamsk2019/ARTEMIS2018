@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.CameraServer;
+
 
 
 @SuppressWarnings("deprecation")
@@ -66,6 +68,7 @@ public class Robot extends IterativeRobot {
 		 gyro = new ADXRS450_Gyro();
 		 gyro.calibrate();
 		 robotDrive = new RobotDrive(driveLeftFront, driveLeftBack, driveRightFront, driveRightBack);
+		 CameraServer.getInstance().startAutomaticCapture();
 	 }
 
 	 @Override
