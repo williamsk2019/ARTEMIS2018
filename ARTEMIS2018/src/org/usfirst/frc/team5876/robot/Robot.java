@@ -344,6 +344,9 @@ public class Robot extends IterativeRobot {
 	  
   }
   
-  
+  void turn() {
+	  
+  }
 
+  
 } // end Robot class definitions
