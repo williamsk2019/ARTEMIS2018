@@ -348,5 +348,9 @@ public class Robot extends IterativeRobot {
 	  
   }
 
+  void grabCube() {
+	  
+  }
+  
   
 } // end Robot class definitions
