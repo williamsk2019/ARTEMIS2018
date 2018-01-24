@@ -352,5 +352,8 @@ public class Robot extends IterativeRobot {
 	  
   }
   
+  void releaseDaCube() {
+	  
+  }
   
 } // end Robot class definitions
