@@ -348,7 +348,7 @@ public class Robot extends IterativeRobot {
 	  
   }
 
-  void grabCube() {
+  void grabDaCube() {
 	  
   }
   
@@ -356,4 +356,7 @@ public class Robot extends IterativeRobot {
 	  
   }
   
+  void liftLift() {
+	  
+  }
 } // end Robot class definitions
