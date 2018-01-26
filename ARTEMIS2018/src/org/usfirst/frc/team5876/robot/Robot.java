@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -35,10 +36,11 @@ public class Robot extends IterativeRobot {
   SpeedController motorDriveRightBack;
   SpeedControllerGroup right_motors;
 
-  //accelerometer and gyro
+  //accelerometer, gyro and encoder
   ADXRS450_Gyro gyro;
   BuiltInAccelerometer accel;
-
+  Encoder encoder;
+  
   //pneumatics controls
   DoubleSolenoid doubleSolenoidLifter; //eDouble;
   Compressor compressor1;
@@ -101,6 +103,8 @@ public class Robot extends IterativeRobot {
 
     accel = new BuiltInAccelerometer();
 
+    encoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+    
     timer = new Timer();
 
     gyro = new ADXRS450_Gyro();
@@ -341,22 +345,31 @@ public class Robot extends IterativeRobot {
   } // end testPeriodic()
   
   void driveForward() {
-	  
-  }
+	  robotDriveBase.arcadeDrive( -0.5 , 0);
+  } //end void driveForward()
   
   void turn() {
-	  
-  }
+	  robotDriveBase.arcadeDrive(0, 0.5);
+  } //end void turn()
 
   void grabDaCube() {
-	  
-  }
+	  doubleSolenoidLifter.set(DoubleSolenoid.Value.kForward);
+  } //end void grabDaCube()
   
   void releaseDaCube() {
-	  
-  }
+	  doubleSolenoidLifter.set(DoubleSolenoid.Value.kReverse);
+  } //end void releaseDaCube()
   
   void liftLift() {
 	  
-  }
+  } //end void liftLift()
+  
+  void encoderConvert() {
+	  encoder.get();
+  } //end void encoderConvert()
+  
+  void degreesConvert() {
+	  
+  } //end void degreesConvert()
+  
 } // end Robot class definitions
