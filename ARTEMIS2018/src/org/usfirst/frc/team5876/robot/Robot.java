@@ -205,7 +205,11 @@ public class Robot extends IterativeRobot {
 			 
 		//if alliance colour is on right side of switch
 			 if(gameData.charAt(0)=='R') {
-				 
+				 driveForward(168);
+				 turn(-90);
+				 driveForward(80);
+				 releaseDaCube();
+				//continue with return to grab more cubes 
 			 }
 		
 		//otherwise drive forward over baseline
