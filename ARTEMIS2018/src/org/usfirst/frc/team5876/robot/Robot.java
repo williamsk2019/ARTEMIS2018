@@ -344,8 +344,15 @@ public class Robot extends IterativeRobot {
 
   } // end testPeriodic()
   
-  void driveForward() {
-	  robotDriveBase.arcadeDrive( -0.5 , 0);
+  void driveForward(int distance) { //distance in inches
+	  encoder.reset();
+	  encoder.setDistancePerPulse(18.85);
+	  
+	  double travel = encoder.getDistance();
+	  while(travel < distance) {
+		  robotDriveBase.arcadeDrive( -0.5 , 0);  
+	  }
+	  
   } //end void driveForward()
   
   void turn() {
@@ -364,8 +371,10 @@ public class Robot extends IterativeRobot {
 	  
   } //end void liftLift()
   
-  void encoderConvert() {
-	  encoder.get();
+  void encoderConvert(int distance) { //converts units from encoders
+	  
+	  //encoder.get();
+	  
   } //end void encoderConvert()
   
   void degreesConvert() {
