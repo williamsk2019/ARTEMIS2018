@@ -346,17 +346,28 @@ public class Robot extends IterativeRobot {
   
   void driveForward(int distance) { //distance in inches
 	  encoder.reset();
-	  encoder.setDistancePerPulse(18.85);
+	  encoder.setDistancePerPulse(18.85); //18.85 = distance of rotation 
 	  
-	  double travel = encoder.getDistance();
-	  while(travel < distance) {
+	  double travel = encoder.getDistance(); //amount travelled
+	  
+	  while(travel < distance) { //allows amount travelled to reach goal distance 
 		  robotDriveBase.arcadeDrive( -0.5 , 0);  
 	  }
 	  
   } //end void driveForward()
   
-  void turn() {
+  void turn(int angle) { //function to reach goal angle
+	  gyro.reset();
+	  
+	  double turned = gyro.getAngle(); //amount turned
+	  
+	  while(turned < angle) { 
 	  robotDriveBase.arcadeDrive(0, 0.5);
+	  }
+	  									//two situations where amount turned reaches goal angle
+	  while (turned > angle) {
+		  robotDriveBase.arcadeDrive(0,-0.5);
+	  }
   } //end void turn()
 
   void grabDaCube() {
