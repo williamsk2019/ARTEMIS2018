@@ -44,6 +44,11 @@ public class Robot extends IterativeRobot {
   //pneumatics controls
   DoubleSolenoid doubleSolenoidLifter; //eDouble;
   Compressor compressor1;
+  
+  //additional motors
+  SpeedController leftLobsterWheels;
+  SpeedController rightLobsterWheels;
+  SpeedControllerGroup lobsterWheels;
 
   /*
    * Controllers and Joysticks
@@ -90,6 +95,11 @@ public class Robot extends IterativeRobot {
     right_motors =  new SpeedControllerGroup(motorDriveRightFront, motorDriveRightBack);
 
     robotDriveBase = new DifferentialDrive(left_motors, right_motors);
+    
+    //set up additional motors / motor groups
+    rightLobsterWheels = new VictorSP(4);
+    leftLobsterWheels = new VictorSP(5);
+    lobsterWheels = new SpeedControllerGroup(rightLobsterWheels, leftLobsterWheels);
 
 
     // now set up other parts of the robot
@@ -142,11 +152,7 @@ public class Robot extends IterativeRobot {
    */
   @Override
   public void autonomousPeriodic() {
-	  
-	  //setup for "accurate" straight driving
-	  		 double angle;
-			 double Kp;
-			 
+	  			 
 	 //setup to allow recieval of game info 
 			 String gameData;
 			 gameData = DriverStation.getInstance().getGameSpecificMessage();
@@ -161,19 +167,16 @@ public class Robot extends IterativeRobot {
 			 
 			 //if alliance colour is on left of switch
 			 if(gameData.charAt(0)=='L') {
-				 
+				 driveForward(168);
+				 turn(90);
+				 driveForward(80);
+				 releaseDaCube();
+				 //continue with return to grab more cubes 
 			 }
 			 
 			 //otherwise drive forward over baseline
 			 else {
-				 if (timer.get() < 5.2) {
-						
-						angle = gyro.getAngle();
-						Kp = 0.05;
-						robotDriveBase.arcadeDrive(-0.5, angle * Kp);
-						
-						Timer.delay(0.01);
-				 }
+				driveForwardWithGyro(120);
 			 }
 			 break; //end case 1
 			 
@@ -207,36 +210,22 @@ public class Robot extends IterativeRobot {
 		
 		//otherwise drive forward over baseline
 			 else {
-				if (timer.get() < 5.2) {
-				
-					angle = gyro.getAngle();
-					Kp = 0.05;
-					robotDriveBase.arcadeDrive(-0.5, angle * Kp);
-						
-					Timer.delay(0.01);
-				 }
+				driveForwardWithGyro(120);
 			 }
 			 break; //end case 3
 			 
-			 //start case top drive over baseline
+			 //start case to drive over baseline
 		 case 0:
 		 default:
 			 System.out.println("Baseline");
 			 System.out.println("X=" + accel.getX() + ", Y=" + accel.getY() + ", Z=" + accel.getZ() + ", gyro=" + gyro.getAngle());
 
+			 driveForwardWithGyro(120);
+			 break;
+			 }// end case 0
+  
 
-			 	if (timer.get() < 5.2) {
-					
-					angle = gyro.getAngle();
-					Kp = 0.05;
-					robotDriveBase.arcadeDrive(-0.5, angle * Kp);
-					
-					Timer.delay(0.01);
-			 }
-			 break; // end case 0
-		 }
-
-  } // end autonomousPeriodic()
+} // end autonomousPeriodic()
 
 
   /**
@@ -300,51 +289,53 @@ public class Robot extends IterativeRobot {
       robotDriveBase.arcadeDrive((joystickLeft.getRawAxis(1)), -(joystickRight.getRawAxis(0)), true);
     } // end if/else -- for slow or normal drive
 
-
-    /* now to check what to do with the solenoid.
-     * Do we want it to clamp or release the claw?
-     */
+    //End code for driving
+    
+    
+    /*
+     * Begin game specific code (lobster (intake) + lift/climb)
+    */
+    
+    //code for intake/delivery
     if (joystickRight.getRawButton(1)==true){
-      // clamp claw
-      doubleSolenoidLifter.set(DoubleSolenoid.Value.kForward);
+    	// clamp claw
+    	grabDaCube();
     }
-    else {
-      // release claw
-      doubleSolenoidLifter.set(DoubleSolenoid.Value.kReverse);
+    
+    else if(joystickRight.getRawButton(3)==true) {
+     	//wheels in
+    	lobsterWheels.set(0.7);
+     }
+
+    else if(joystickLeft.getRawButton(4)==true) {
+    	//wheels out
+    	lobsterWheels.set(-0.7);
     }
-
-
-
-    // other lifter / claw code to be created later below...
-
-    // if(gamepadController.getRawButton(1)==true) {
-    // 	//release claw
-    // }
-    //
-    // else if(joystickRight.getRawButton(3)==true) {
-    // 	//wheels in
-    // }
-    //
-    // else if(joystickLeft.getRawButton(4)==true) {
-    // 	//wheels out
-    // }
-    //
-    // else if(gamepadController.getRawButton(2)== true) {
-    // 	//up
-    // }
-    // else if(gamepadController.getRawButton(3)==true) {
-    // 	//down
-    // }
+    
+    else if(gamepadController.getRawButton(2)==true) {
+    	//release claw
+    	releaseDaCube();
+    }
+    
+    
+    //code for lift 
+    else if(gamepadController.getRawButton(1)==true) {
+     	//up
+     }
+    
+    else if(gamepadController.getRawButton(3)==true) {
+     	//down
+     }
 
 
   } // end teleopPeriodic()
-
-  @Override
-  public void testPeriodic() {
-
-  } // end testPeriodic()
   
-  void driveForward(int distance) { //distance in inches
+
+  /*
+   * Begin custom functions
+  */
+  
+  void driveForward(int distance) { //function to reach goal distance (inches)
 	  encoder.reset();
 	  encoder.setDistancePerPulse(18.85); //18.85 = distance of rotation 
 	  
@@ -355,6 +346,23 @@ public class Robot extends IterativeRobot {
 	  }
 	  
   } //end void driveForward()
+  
+  void driveForwardWithGyro(int distance) { //function to reach goal distance (inches)
+	  encoder.reset();
+	  encoder.setDistancePerPulse(18.85); //18.85 = distance of rotation 
+	  
+	  double travel = encoder.getDistance(); //amount travelled
+	  
+	  while(travel < distance) { //allows amount travelled to reach goal distance 
+		  
+		  double angle = gyro.getAngle();
+			double Kp = 0.05;
+			robotDriveBase.arcadeDrive(-0.5, angle * Kp);
+			
+			Timer.delay(0.01);
+	  }
+	  
+  } //end void driveForwardWithGyro()
   
   void turn(int angle) { //function to reach goal angle
 	  gyro.reset();
@@ -381,15 +389,5 @@ public class Robot extends IterativeRobot {
   void liftLift() {
 	  
   } //end void liftLift()
-  
-  void encoderConvert(int distance) { //converts units from encoders
-	  
-	  //encoder.get();
-	  
-  } //end void encoderConvert()
-  
-  void degreesConvert() {
-	  
-  } //end void degreesConvert()
   
 } // end Robot class definitions
