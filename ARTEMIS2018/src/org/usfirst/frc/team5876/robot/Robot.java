@@ -167,7 +167,7 @@ public class Robot extends IterativeRobot {
 			 
 			 //if alliance colour is on left of switch
 			 if(gameData.charAt(0)=='L') {
-				 driveForward(168);
+				 driveForward(168); //14 ft
 				 turn(90);
 				 driveForward(80);
 				 releaseDaCube();
@@ -331,6 +331,11 @@ public class Robot extends IterativeRobot {
      	//down
      }
 
+    else if(joystickLeft.getRawButton(5)==true) {
+    	driveForward(24);
+    	turn(90);
+    	driveForwardWithGyro(120);
+    }
 
   } // end teleopPeriodic()
   
