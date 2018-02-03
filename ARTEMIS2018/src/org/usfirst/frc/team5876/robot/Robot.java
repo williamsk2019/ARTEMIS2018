@@ -306,20 +306,27 @@ public class Robot extends IterativeRobot {
     	grabDaCube();
     }
     
-    else if(joystickRight.getRawButton(3)==true) {
+    else if(joystickRight.getRawButton(2)==true) { //change to gamepad
+    	//release claw
+    	releaseDaCube();
+    }
+    
+    if(joystickRight.getRawButton(3)==true) {
      	//wheels in
-    	lobsterWheels.set(0.7);
+    	rightLobsterWheels.set(-0.2);
+    	leftLobsterWheels.set(0.2);
      }
 
     else if(joystickLeft.getRawButton(4)==true) {
     	//wheels out
-    	lobsterWheels.set(-0.7);
+    	rightLobsterWheels.set(0.2);
+    	leftLobsterWheels.set(-0.2);
+    }
+    else if (joystickRight.getRawButton(3)==false && joystickLeft.getRawButton(4)==false) {
+    	lobsterWheels.set(0);
     }
     
-    else if(gamepadController.getRawButton(2)==true) {
-    	//release claw
-    	releaseDaCube();
-    }
+   
     
     
     //code for lift 
@@ -331,11 +338,22 @@ public class Robot extends IterativeRobot {
      	//down
      }
 
-    else if(joystickLeft.getRawButton(5)==true) {
-    	driveForward(24);
-    	turn(90);
-    	driveForwardWithGyro(120);
-    }
+//   else if (joystickLeft.getRawButton(6)==true) {
+////    	timer.reset();
+//   	gyro.reset();
+//   	
+//   }
+//    else if(joystickLeft.getRawButton(5)==true) { //test 
+//    			turn(-90);
+//    			
+//    		
+//    }
+//    else if(joystickRight.getRawButton(5)==true) {
+//    	turn(90);
+//    }
+//    	
+    		
+    
 
   } // end teleopPeriodic()
   
@@ -379,20 +397,24 @@ public class Robot extends IterativeRobot {
 	  double turned = gyro.getAngle(); //amount turned
 	  
 	  while(turned < angle) { 
-	  robotDriveBase.arcadeDrive(0, 0.5);
+	  robotDriveBase.arcadeDrive(0, 0.4);
+	  turned = gyro.getAngle();
 	  }
 	  									//two situations where amount turned reaches goal angle
 	  while (turned > angle) {
-		  robotDriveBase.arcadeDrive(0,-0.5);
+		  robotDriveBase.arcadeDrive(0,-0.4);
+		  turned = gyro.getAngle();
 	  }
   } //end void turn()
 
   void grabDaCube() {
 	  doubleSolenoidLifter.set(DoubleSolenoid.Value.kForward);
+	  System.out.println("grabbing");
   } //end void grabDaCube()
   
   void releaseDaCube() {
 	  doubleSolenoidLifter.set(DoubleSolenoid.Value.kReverse);
+	  System.out.println("releasing");
   } //end void releaseDaCube()
   
   void liftLift() {
