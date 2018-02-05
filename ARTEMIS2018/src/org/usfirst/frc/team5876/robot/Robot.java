@@ -187,12 +187,21 @@ public class Robot extends IterativeRobot {
 
 		//if alliance colour is on right of switch
 			 if(gameData.charAt(0)=='R') {
+				 driveForward(48);
+				 turn(45);
+				 driveForward(113);
+				 turn(-45);
+				 driveForward(12);
 				 
 			 }
 			 
 		//if alliance colour is on left of swtich
 			 else {
-				 
+				 driveForward(42);
+				 turn(-45);
+				 driveForward(130); //?
+				 turn(45);
+				 driveForward(12);
 			 }
 			
 			 break; //end case 2
