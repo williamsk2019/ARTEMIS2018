@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class ArtemisBot {
-	// The drive base of the robot
+	// The drive base of the robots
 	  DifferentialDrive robotDriveBase;
 
 	  // The motor controllers (will be passed in to the drive base)
