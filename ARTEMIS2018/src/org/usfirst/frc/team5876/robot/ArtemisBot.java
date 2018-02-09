@@ -99,6 +99,5 @@ public class ArtemisBot {
 	void tankDrive(double leftSpeed, double rightSpeed) {
 		robotDriveBase.tankDrive(leftSpeed, rightSpeed);
 	}
-	}
 	  
 }
