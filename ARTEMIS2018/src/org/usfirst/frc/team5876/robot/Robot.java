@@ -315,7 +315,7 @@ public class Robot extends IterativeRobot {
     	grabDaCube();
     }
     
-    else if(joystickRight.getRawButton(2)==true) { //change to gamepad
+    else if(gamepadController.getRawButton(2)==true) { 
     	//release claw
     	releaseDaCube();
     }
@@ -326,7 +326,7 @@ public class Robot extends IterativeRobot {
     	leftLobsterWheels.set(0.2);
      }
 
-    else if(joystickLeft.getRawButton(4)==true) {
+    else if(gamepadController.getRawButton(4)==true) {
     	//wheels out
     	rightLobsterWheels.set(0.2);
     	leftLobsterWheels.set(-0.2);
