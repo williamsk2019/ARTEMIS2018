@@ -83,7 +83,7 @@ public class Robot extends IterativeRobot {
     joystickRight =      new Joystick(1);
     gamepadController =  new Joystick(2);
 
-    // set up individual drive motors
+ // set up individual drive motors
     motorDriveLeftFront =     new VictorSP(0);
     motorDriveLeftBack =      new VictorSP(1);
 
