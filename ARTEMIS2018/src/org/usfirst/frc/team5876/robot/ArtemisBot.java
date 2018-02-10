@@ -102,11 +102,11 @@ public class ArtemisBot {
 	  } //end void releaseDaCube()
 	
 	
-	void liftUp() {
+	void liftLift() {
 		//lifts stuff
 	}
 	
-	void liftDown() {
+	void downLift() {
 		//lifts stuff down
 	}
 	
