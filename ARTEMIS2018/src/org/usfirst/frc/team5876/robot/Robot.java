@@ -315,7 +315,7 @@ public class Robot extends IterativeRobot {
     	grabDaCube();
     }
     
-    else if(joystickRight.getRawButton(2)==true) { //change to gamepad
+    else if(gamepadController.getRawButton(2)==true) { 
     	//release claw
     	releaseDaCube();
     }
@@ -326,7 +326,7 @@ public class Robot extends IterativeRobot {
     	leftLobsterWheels.set(0.2);
      }
 
-    else if(joystickLeft.getRawButton(4)==true) {
+    else if(gamepadController.getRawButton(4)==true) {
     	//wheels out
     	rightLobsterWheels.set(0.2);
     	leftLobsterWheels.set(-0.2);
@@ -379,6 +379,7 @@ public class Robot extends IterativeRobot {
 	  
 	  while(travel < distance) { //allows amount travelled to reach goal distance 
 		  robotDriveBase.arcadeDrive( -0.5 , 0);  
+		  travel = encoder.getDistance();
 	  }
 	  
   } //end void driveForward()
@@ -395,7 +396,9 @@ public class Robot extends IterativeRobot {
 			double Kp = 0.05;
 			robotDriveBase.arcadeDrive(-0.5, angle * Kp);
 			
+			
 			Timer.delay(0.01);
+			travel = encoder.getDistance();
 	  }
 	  
   } //end void driveForwardWithGyro()
