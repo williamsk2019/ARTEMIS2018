@@ -128,6 +128,10 @@ public class Controls {
 		    	fawkes.lobsterWheelsStop();
 		    }
 		    
+		    if (gamepadController.getRawButton(8) == true) {
+		    	fawkes.lobsterWheelsStop();
+		    }
+		    
 		    
 		    
 //		    //code for lift 
