@@ -28,6 +28,7 @@ public class ArtemisBot {
 	  ADXRS450_Gyro gyro;
 	  BuiltInAccelerometer accel;
 	  Encoder encoder;
+	  Encoder encoder1;
 	  
 	  //pneumatics controls
 	  DoubleSolenoid doubleSolenoidLifter; //eDouble;
@@ -73,6 +74,7 @@ public class ArtemisBot {
 	    accel = new BuiltInAccelerometer();
 	
 	    encoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+	    encoder1 = new Encoder(1, 1, false, Encoder.EncodingType.k4X);
 	    
 	    timer = new Timer();
 	
@@ -170,8 +172,17 @@ public class ArtemisBot {
 		rightLobsterWheels.set(0.2);
     	leftLobsterWheels.set(-0.2);
 	}
+
 	void lobsterWheelsStop() {
 		rightLobsterWheels.set(0.0);
     	leftLobsterWheels.set(0.0);
 	}
+
+	
+	void prepareForAuto() {
+		gyro.reset();
+		encoder.reset();
+		encoder1.reset();
+	}
+
 }
