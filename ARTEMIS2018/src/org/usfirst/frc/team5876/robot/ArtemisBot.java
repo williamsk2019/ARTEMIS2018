@@ -171,4 +171,9 @@ public class ArtemisBot {
     	leftLobsterWheels.set(-0.2);
 	}
 	
+	void prepareForAuto() {
+		gyro.reset();
+		encoder.reset();
+	}
+	
 }
