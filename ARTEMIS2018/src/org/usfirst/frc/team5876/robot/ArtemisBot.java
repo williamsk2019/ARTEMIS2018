@@ -92,26 +92,35 @@ public class ArtemisBot {
 		robotDriveBase.tankDrive(leftSpeed, rightSpeed);
 	}
 	
-	void driveForward(int distance) { //function to reach goal distance (inches)
+	boolean driveForward(int distance , double timeout) { //function to reach goal distance (inches)
 		  encoder.reset();
+		  Timer timerDrive = new Timer();
+		  timerDrive.start();
 		  encoder.setDistancePerPulse(18.85); //18.85 = distance of rotation 
 		  
 		  double travel = encoder.getDistance(); //amount travelled
 		  
-		  while(travel < distance) { //allows amount travelled to reach goal distance 
+		  while(travel < distance && timerDrive.get() < timeout) { //allows amount travelled to reach goal distance 
 			  robotDriveBase.arcadeDrive( -0.5 , 0);  
 			  travel = encoder.getDistance();
 		  }
-		  
+		  if (timerDrive.get() < timeout) {
+			  return true; //completed within timeout limit
+		  }
+		  else {
+			  return false; //oh no too slow
+		  }
 	  } //end void driveForward()
 	  
-	  void driveForwardWithGyro(int distance) { //function to reach goal distance (inches)
+	  boolean driveForwardWithGyro(int distance , double timeout) { //function to reach goal distance (inches)
 		  encoder.reset();
+		  Timer timerDrive = new Timer();
+		  timerDrive.start();
 		  encoder.setDistancePerPulse(18.85); //18.85 = distance of rotation 
 		  
 		  double travel = encoder.getDistance(); //amount travelled
 		  
-		  while(travel < distance) { //allows amount travelled to reach goal distance 
+		  while(travel < distance && timerDrive.get() < timeout) { //allows amount travelled to reach goal distance 
 			  
 			  double angle = gyro.getAngle();
 				double Kp = 0.05;
@@ -121,22 +130,35 @@ public class ArtemisBot {
 				Timer.delay(0.01);
 				travel = encoder.getDistance();
 		  }
-		  
+		  if (timerDrive.get() < timeout) {
+			  return true; //completed within timeout limit
+		  }
+		  else {
+			  return false; //oh no too slow
+		  }
 	  } //end void driveForwardWithGyro()
 	  
-	  void turn(int angle) { //function to reach goal angle
+	  boolean turn(int angle , double timeout) { //function to reach goal angle
 		  gyro.reset();
+		  Timer timerTurn = new Timer();
+		  timerTurn.start();
 		  
 		  double turned = gyro.getAngle(); //amount turned
 		  
-		  while(turned < angle) { 
+		  while(turned < angle && timerTurn.get() < timeout) { 
 		  robotDriveBase.arcadeDrive(0, 0.4);
 		  turned = gyro.getAngle();
 		  }
 		  									//two situations where amount turned reaches goal angle
-		  while (turned > angle) {
+		  while (turned > angle && timerTurn.get() < timeout) {
 			  robotDriveBase.arcadeDrive(0,-0.4);
 			  turned = gyro.getAngle();
+		  }
+		  if (timerTurn.get() < timeout) {
+			  return true; //completed within timeout limit
+		  }
+		  else {
+			  return false; //oh no too slow
 		  }
 	  } //end void turn()
 	
