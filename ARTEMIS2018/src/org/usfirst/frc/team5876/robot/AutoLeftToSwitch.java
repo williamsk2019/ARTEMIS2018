@@ -1,12 +1,18 @@
 package org.usfirst.frc.team5876.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
+
 public class AutoLeftToSwitch extends AutoTemplate{
-	public void AutoLeftToSwitch() {
+	
+	 String gameData;
+	
+	public AutoLeftToSwitch() {
 		
+		 gameData = DriverStation.getInstance().getGameSpecificMessage();
 	}
 	
     public void autonomousInitCode(ArtemisBot fawkes){
-    	
+    	fawkes.prepareForAuto();
     }
     public void autonomousPeriodicCode(ArtemisBot fawkes){
     	 System.out.println("Position 1 (left)");
@@ -14,16 +20,16 @@ public class AutoLeftToSwitch extends AutoTemplate{
 		 
 		 //if alliance colour is on left of switch
 		 if(gameData.charAt(0)=='L') {
-			 driveForward(168); //14 ft
-			 turn(90);
-			 driveForward(80);
-			 releaseDaCube();
+			 fawkes.driveForward(168); //14 ft
+			 fawkes.turn(90);
+			 fawkes.driveForward(80);
+			 fawkes.releaseDaCube();
 			 //continue with return to grab more cubes 
 		 }
 		 
 		 //otherwise drive forward over baseline
 		 else {
-			driveForwardWithGyro(120);
+			fawkes.driveForwardWithGyro(120);
 		 }
     }
 	

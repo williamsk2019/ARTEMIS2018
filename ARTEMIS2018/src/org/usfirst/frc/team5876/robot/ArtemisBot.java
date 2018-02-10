@@ -106,7 +106,7 @@ public class ArtemisBot {
 		//lifts stuff
 	}
 	
-	void downLift() {
+	void unliftLift() {
 		//lifts stuff down
 	}
 	
