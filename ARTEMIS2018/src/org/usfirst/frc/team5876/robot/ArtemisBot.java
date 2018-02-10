@@ -157,4 +157,8 @@ public class ArtemisBot {
 		//lifts stuff down
 	}
 	
+	void stopLift() {
+		
+	}
+	
 }
