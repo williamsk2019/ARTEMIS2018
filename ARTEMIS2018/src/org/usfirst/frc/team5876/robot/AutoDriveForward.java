@@ -18,7 +18,7 @@ public class AutoDriveForward extends AutoTemplate{
     	System.out.println("Baseline");
 		 System.out.println("X=" + fawkes.accel.getX() + ", Y=" + fawkes.accel.getY() + ", Z=" + fawkes.accel.getZ() + ", gyro=" + fawkes.gyro.getAngle());
 
-		 fawkes.driveForwardWithGyro(120);
+		 fawkes.driveForwardWithGyro(120, 15);
     }
 	
 }

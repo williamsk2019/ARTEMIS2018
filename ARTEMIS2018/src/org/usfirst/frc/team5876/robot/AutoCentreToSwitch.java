@@ -20,21 +20,45 @@ public class AutoCentreToSwitch extends AutoTemplate{
 
 	//if alliance colour is on right of switch
 		 if(gameData.charAt(0)=='R') {
-			 fawkes.driveForward(48);
-			 fawkes.turn(45);
-			 fawkes.driveForward(113);
-			 fawkes.turn(-45);
-			 fawkes.driveForward(12);
+			 
+			 boolean completed = fawkes.driveForward(48, 5); //4 ft within 5 seconds
+			 if (completed = true){
+			 completed = completed & fawkes.turn(45,5); //turn right within 5 seconds
+			 }
+			 
+			 if (completed = true) {
+				completed = completed & fawkes.driveForward(113,5); //113 in within 5 seconds
+			 }
+			 
+			 if (completed = true) {
+				completed = completed & fawkes.turn(-45, 5); //turn left within 5 seconds
+			 }
+			 
+			 if (completed = true) {
+				completed = completed & fawkes.driveForward(12, 5); //1 ft witin 5 seconds
+			 }
 			 
 		 }
 		 
 	//if alliance colour is on left of swtich
 		 else {
-			 fawkes.driveForward(42);
-			 fawkes.turn(-45);
-			 fawkes.driveForward(130); //?
-			 fawkes.turn(45);
-			 fawkes.driveForward(12);
+			 boolean completed = fawkes.driveForward(42,5); //42 in within 5 seconds
+			 if (completed = true){
+			 completed = completed & fawkes.turn(-45,5); //turn left within 5 seconds
+			 }
+			 
+			 if (completed = true) {
+				completed = completed & fawkes.driveForward(130,5); //130 in within 5 seconds
+			 }
+			 
+			 if (completed = true) {
+				completed = completed & fawkes.turn(45, 5); //turn right within 5 seconds
+			 }
+			 
+			 if (completed = true) {
+				completed = completed & fawkes.driveForward(12, 5); //1 ft witin 5 seconds
+			 }
+			 
 		 }
     }
 	

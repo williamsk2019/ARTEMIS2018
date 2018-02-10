@@ -38,7 +38,7 @@ public class AutoRightToSwitch extends AutoTemplate{
 	
 	//otherwise drive forward over baseline
 		 else {
-			fawkes.driveForwardWithGyro(120);
+			fawkes.driveForwardWithGyro(120, 15);
 		 }
     }
 	
