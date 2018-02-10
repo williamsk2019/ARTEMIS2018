@@ -82,22 +82,28 @@ public class ArtemisBot {
 	    CameraServer.getInstance().startAutomaticCapture();
 	}
 	
-	void grabDaCube() {
-		  doubleSolenoidLifter.set(DoubleSolenoid.Value.kForward);
-		  System.out.println("grabbing");
-	  } //end void grabDaCube()
-	  
-	void releaseDaCube() {
-		  doubleSolenoidLifter.set(DoubleSolenoid.Value.kReverse);
-		  System.out.println("releasing");
-	  } //end void releaseDaCube()
-	
 	void arcadeDrive(double xSpeed, double zRotation, boolean squareInput) {
 		robotDriveBase.arcadeDrive(xSpeed, zRotation, squareInput);
 	}
 	
 	void tankDrive(double leftSpeed, double rightSpeed) {
 		robotDriveBase.tankDrive(leftSpeed, rightSpeed);
+	}
+	
+	
+	void grabDaCube() {
+		doubleSolenoidLifter.set(DoubleSolenoid.Value.kForward);
+		System.out.println("grabbing");
+	  } //end void grabDaCube()
+	  
+	void releaseDaCube() {
+		doubleSolenoidLifter.set(DoubleSolenoid.Value.kReverse);
+		System.out.println("releasing");
+	  } //end void releaseDaCube()
+	
+	
+	void liftUp() {
+		//lifts stuff
 	}
 	  
 }
