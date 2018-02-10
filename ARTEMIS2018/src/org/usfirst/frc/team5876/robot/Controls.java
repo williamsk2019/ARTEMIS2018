@@ -95,13 +95,11 @@ public class Controls {
 		    if(joystickRight.getRawButton(3)==true) {
 		     	//wheels in
 		    	fawkes.lobsterWheelsIn();
-		     }
+		     }else{
+			    	fawkes.lobsterWheelsStop();
+			    }
 
-		   
-		    else if (joystickRight.getRawButton(3)==false && joystickLeft.getRawButton(4)==false) {
-		    	fawkes.lobsterWheels.set(0);
-		    }
-		    
+		     
 	
 		    
 		    if (gamepadController.getBButtonPressed() == true)
@@ -109,6 +107,7 @@ public class Controls {
 		    	//Lobster claws release
 		    	fawkes.releaseDaCube();
 		    }
+		    
 		    
 		    if (gamepadController.getAButtonPressed() == true)
 		    {
@@ -125,6 +124,8 @@ public class Controls {
 		    {
 		    	//Wheels out
 		    	fawkes.lobsterWheelsOut();
+		    }else{
+		    	fawkes.lobsterWheelsStop();
 		    }
 		    
 		    
