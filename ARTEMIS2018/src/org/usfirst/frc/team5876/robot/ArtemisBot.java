@@ -161,4 +161,14 @@ public class ArtemisBot {
 		
 	}
 	
+	void lobsterWheelsIn() {
+		rightLobsterWheels.set(-0.2);
+    	leftLobsterWheels.set(0.2);
+	}
+	
+	void lobsterWheelsOut() {
+		rightLobsterWheels.set(0.2);
+    	leftLobsterWheels.set(-0.2);
+	}
+	
 }
