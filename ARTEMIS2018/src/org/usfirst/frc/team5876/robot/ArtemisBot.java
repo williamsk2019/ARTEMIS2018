@@ -106,4 +106,8 @@ public class ArtemisBot {
 		//lifts stuff
 	}
 	
+	void liftDown() {
+		//lifts stuff down
+	}
+	
 }
