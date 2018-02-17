@@ -27,8 +27,8 @@ public class ArtemisBot {
 	  //accelerometer, gyro and encoder
 	  ADXRS450_Gyro gyro;
 	  BuiltInAccelerometer accel;
-	  Encoder encoder;
-	  Encoder encoder1;
+	  Encoder encoderLeft;
+	  Encoder encoderRight;
 	  
 	  //pneumatics controls
 	  DoubleSolenoid doubleSolenoidLifter; //eDouble;
@@ -73,8 +73,8 @@ public class ArtemisBot {
 	
 	    accel = new BuiltInAccelerometer();
 	
-	    encoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
-	    encoder1 = new Encoder(1, 1, false, Encoder.EncodingType.k4X);
+	    encoderLeft = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+	    encoderRight = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
 	    
 	    timer = new Timer();
 	
@@ -93,16 +93,16 @@ public class ArtemisBot {
 	}
 	
 	boolean driveForward(int distance , double timeout) { //function to reach goal distance (inches)
-		  encoder.reset();
+		  encoderLeft.reset();
 		  Timer timerDrive = new Timer();
 		  timerDrive.start();
-		  encoder.setDistancePerPulse(18.85); //18.85 = distance of rotation 
+		  encoderLeft.setDistancePerPulse(18.85); //18.85 = distance of rotation 
 		  
-		  double travel = encoder.getDistance(); //amount travelled
+		  double travel = encoderLeft.getDistance(); //amount travelled
 		  
 		  while(travel < distance && timerDrive.get() < timeout) { //allows amount travelled to reach goal distance 
 			  robotDriveBase.arcadeDrive( -0.5 , 0);  
-			  travel = encoder.getDistance();
+			  travel = encoderLeft.getDistance();
 		  }
 		  if (timerDrive.get() < timeout) {
 			  return true; //completed within timeout limit
@@ -113,12 +113,12 @@ public class ArtemisBot {
 	  } //end void driveForward()
 	  
 	  boolean driveForwardWithGyro(int distance , double timeout) { //function to reach goal distance (inches)
-		  encoder.reset();
+		  encoderLeft.reset();
 		  Timer timerDrive = new Timer();
 		  timerDrive.start();
-		  encoder.setDistancePerPulse(18.85); //18.85 = distance of rotation 
+		  encoderLeft.setDistancePerPulse(18.85); //18.85 = distance of rotation 
 		  
-		  double travel = encoder.getDistance(); //amount travelled
+		  double travel = encoderLeft.getDistance(); //amount travelled
 		  
 		  while(travel < distance && timerDrive.get() < timeout) { //allows amount travelled to reach goal distance 
 			  
@@ -128,7 +128,7 @@ public class ArtemisBot {
 				
 				
 				Timer.delay(0.01);
-				travel = encoder.getDistance();
+				travel = encoderLeft.getDistance();
 		  }
 		  if (timerDrive.get() < timeout) {
 			  return true; //completed within timeout limit
@@ -175,6 +175,7 @@ public class ArtemisBot {
 	
 	void liftLift() {
 		//lifts stuff
+		
 	}
 	
 	void unliftLift() {
@@ -203,8 +204,8 @@ public class ArtemisBot {
 	
 	void prepareForAuto() {
 		gyro.reset();
-		encoder.reset();
-		encoder1.reset();
+		encoderLeft.reset();
+		encoderRight.reset();
 	}
 
 }

@@ -95,11 +95,22 @@ public class Controls {
 		    if(joystickRight.getRawButton(3)==true) {
 		     	//wheels in
 		    	fawkes.lobsterWheelsIn();
-		     }else{
-			    	fawkes.lobsterWheelsStop();
-			    }
+		     }
+		    
+		    else if (gamepadController.getYButtonPressed() == true)
+		    {
+		    	//Wheels out
+		    	fawkes.lobsterWheelsOut();
+		    }
+		    else if (joystickRight.getRawButton(2)==false && gamepadController.getYButtonPressed()==false ) {
+		    	//stop wheels automatically
+		    	fawkes.lobsterWheelsStop();	
+		    }
 
-		     
+		    if (gamepadController.getRawButton(5) == true) {
+		    	//stop wheels manually
+		    	fawkes.lobsterWheelsStop();
+		    }
 	
 		    
 		    if (gamepadController.getBButtonPressed() == true)
@@ -112,51 +123,15 @@ public class Controls {
 		    if (gamepadController.getAButtonPressed() == true)
 		    {
 		        fawkes.liftLift();    	
-		    }else if (gamepadController.getXButtonPressed() == true)
+		        
+		    }
+		    else if (gamepadController.getXButtonPressed() == true)
 		    {
 		    	fawkes.unliftLift();
-		    }else{
+		    }
+		    else{
 		    	fawkes.stopLift();
-		    }
-		    
-		    
-		    if (gamepadController.getYButtonPressed() == true)
-		    {
-		    	//Wheels out
-		    	fawkes.lobsterWheelsOut();
-		    }else{
-		    	fawkes.lobsterWheelsStop();
-		    }
-		    
-		    if (gamepadController.getRawButton(8) == true) {
-		    	fawkes.lobsterWheelsStop();
-		    }
-		    
-		    
-		    
-//		    //code for lift 
-//		    else if(gamepadController.getRawButton(1)==true) {
-//		     	//up
-//		     }
-//		    
-//		    else if(gamepadController.getRawButton(3)==true) {
-//		     	//down
-//		     }
-
-		//   else if (joystickLeft.getRawButton(6)==true) {
-////		    	timer.reset();
-//		   	gyro.reset();
-		//   	
-		//   }
-//		    else if(joystickLeft.getRawButton(5)==true) { //test 
-//		    			turn(-90);
-//		    			
-//		    		
-//		    }
-//		    else if(joystickRight.getRawButton(5)==true) {
-//		    	turn(90);
-//		    }
-//		    	
+		    }	
 
 	}
 	
