@@ -14,7 +14,7 @@ public class RobotMain extends IterativeRobot {
   ArtemisBot robot;
   AutoManager autonomousPlans;
   AutoTemplate selectedAutonomous;
-
+  Timer robotTimer;
 
   //now we need the autonomous mode chooser....
 
@@ -25,7 +25,7 @@ public class RobotMain extends IterativeRobot {
   SendableChooser<String> chooser = new SendableChooser<String>();
 
   /**
-   * set up the robot parameters, camperas, etc... once it is turned on.
+   * set up the robot parameters, cameras, etc... once it is turned on.
    */
   @Override
   public void robotInit() {
@@ -51,6 +51,9 @@ public class RobotMain extends IterativeRobot {
     }
 
     SmartDashboard.putData("Auto choices", chooser);
+    
+    robotTimer = new Timer();
+    robotTimer.start();
 
   } // end robotInit()
 
@@ -101,6 +104,8 @@ public class RobotMain extends IterativeRobot {
    */
   @Override
   public void teleopPeriodic() {
+	  double angle = robot.gyro.getAngle();
+		System.out.println("Timer, " + robotTimer.get() + ", Gyro angle, " + angle + ", measured");
 
     driverStationControllers.updateControls(robot);
   } // end teleopPeriodic()

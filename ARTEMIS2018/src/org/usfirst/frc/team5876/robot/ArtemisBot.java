@@ -38,6 +38,7 @@ public class ArtemisBot {
 	  SpeedController leftLobsterWheels;
 	  SpeedController rightLobsterWheels;
 	  SpeedControllerGroup lobsterWheels;
+	  SpeedController liftMotor;
 	
 	  //timer
 	  Timer timer;
@@ -60,6 +61,7 @@ public class ArtemisBot {
 	    rightLobsterWheels = new VictorSP(4);
 	    leftLobsterWheels = new VictorSP(5);
 	    lobsterWheels = new SpeedControllerGroup(rightLobsterWheels, leftLobsterWheels);
+	    liftMotor = new VictorSP(6);
 	
 	
 	    // now set up other parts of the robot
@@ -101,7 +103,7 @@ public class ArtemisBot {
 		  double travel = encoderLeft.getDistance(); //amount travelled
 		  
 		  while(travel < distance && timerDrive.get() < timeout) { //allows amount travelled to reach goal distance 
-			  robotDriveBase.arcadeDrive( -0.5 , 0);  
+			  robotDriveBase.arcadeDrive( 0.5 , 0);  
 			  travel = encoderLeft.getDistance();
 		  }
 		  if (timerDrive.get() < timeout) {
@@ -124,7 +126,7 @@ public class ArtemisBot {
 			  
 			  double angle = gyro.getAngle();
 				double Kp = 0.05;
-				robotDriveBase.arcadeDrive(-0.5, angle * Kp);
+				robotDriveBase.arcadeDrive(0.5, angle * Kp);
 				
 				
 				Timer.delay(0.01);
@@ -175,15 +177,16 @@ public class ArtemisBot {
 	
 	void liftLift() {
 		//lifts stuff
-		
+		liftMotor.set(0.3);
 	}
 	
 	void unliftLift() {
 		//lifts stuff down
+		liftMotor.set(-0.3);
 	}
 	
 	void stopLift() {
-		
+		liftMotor.set(0);
 	}
 	
 	void lobsterWheelsIn() {

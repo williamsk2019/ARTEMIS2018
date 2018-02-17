@@ -41,7 +41,7 @@ public class Controls {
 		        case 0:
 		        case 315:
 		        case 45:
-		          forward = -slow;
+		          forward = slow;
 		        break;
 
 		        case 180:
@@ -71,7 +71,7 @@ public class Controls {
 		    else
 		    {
 		      //drive the robot as normal
-		    	fawkes.arcadeDrive((joystickLeft.getRawAxis(1)), -(joystickRight.getRawAxis(0)), true);
+		    	fawkes.arcadeDrive((joystickLeft.getRawAxis(1)), (joystickRight.getRawAxis(0)), true);
 		    } // end if/else -- for slow or normal drive
 
 		    //End code for driving
