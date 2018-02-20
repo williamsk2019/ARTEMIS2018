@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.ArrayList;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 
 
@@ -44,9 +43,9 @@ public class RobotMain extends IterativeRobot {
 
 
     //get the list of registered auto classes and send them as options for the SmartDashboard selector
-    ArrayList<String> autonomousPlansList = autonomousPlans.getRegisteredPlansList();
+   ArrayList<String> autonomousPlansList = autonomousPlans.getRegisteredPlansList();
 
-    for ( String planName : autonomousPlansList) {
+  for ( String planName : autonomousPlansList) {
       chooser.addObject(planName,planName);
     }
 
@@ -79,7 +78,7 @@ public class RobotMain extends IterativeRobot {
 
     selectedAutonomous.autonomousInitCode(robot);
 
-        System.out.println("Auto Init Code Completed!");
+       System.out.println("Auto Init Code Completed!");
 
   } // end autonomousInit()
 
@@ -92,8 +91,8 @@ public class RobotMain extends IterativeRobot {
   @Override
   public void autonomousPeriodic() {
 
-    System.out.println("Running Auto Periodic Code");
-    selectedAutonomous.autonomousPeriodicCode(robot);
+   System.out.println("Running Auto Periodic Code");
+   selectedAutonomous.autonomousPeriodicCode(robot);
 
   } // end autonomousPeriodic()
 
@@ -112,9 +111,6 @@ public class RobotMain extends IterativeRobot {
 
   @Override
   public void testPeriodic() {
-
-    LiveWindow.run();
-
   } // end testPeriodic()
 
 } // end RobotMain class definitions
