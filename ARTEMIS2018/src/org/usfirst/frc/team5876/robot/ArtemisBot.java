@@ -101,7 +101,7 @@ public class ArtemisBot {
 		  encoderLeft.setDistancePerPulse(18.85); //18.85 = distance of rotation 
 		  
 		  double travel = encoderLeft.getDistance(); //amount travelled
-		  
+
 		  while(travel < distance && timerDrive.get() < timeout) { //allows amount travelled to reach goal distance 
 			  robotDriveBase.arcadeDrive( 0.5 , 0);  
 			  travel = encoderLeft.getDistance();

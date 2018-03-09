@@ -10,7 +10,7 @@ public class Controls {
 	XboxController gamepadController; // gamepadController
 	
 	
-	public void Controller()
+	public Controls()
 	{
 		joystickLeft = new Joystick(0);
 		joystickRight = new Joystick(1);
@@ -57,13 +57,13 @@ public class Controls {
 		        case 90:
 		        case 45:
 		        case 135:
-		          turn = -slow;
+		          turn = slow;
 		        break;
 
 		        case 270:
 		        case 225:
 		        case 315:
-		          turn = slow;
+		          turn = -slow;
 		        break;
 		      }
 		      fawkes.arcadeDrive(forward, turn, true);

@@ -40,13 +40,15 @@ public class RobotMain extends IterativeRobot {
     autonomousPlans.registerPlan("AutoDriveForward");
     autonomousPlans.registerPlan("AutoLeftToSwitch");
     autonomousPlans.registerPlan("AutoRightToSwitch");
+    autonomousPlans.registerPlan("AutoRightToSwitchTimer");
+    autonomousPlans.registerPlan("AutoLeftToSwitchTimer");
 
 
     //get the list of registered auto classes and send them as options for the SmartDashboard selector
    ArrayList<String> autonomousPlansList = autonomousPlans.getRegisteredPlansList();
 
   for ( String planName : autonomousPlansList) {
-      chooser.addObject(planName,planName);
+      chooser.addObject(planName, planName);
     }
 
     SmartDashboard.putData("Auto choices", chooser);
