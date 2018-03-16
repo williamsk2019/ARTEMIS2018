@@ -47,7 +47,7 @@ public class Controls {
 		        case 180:
 		        case 135:
 		        case 225:
-		          forward = slow;
+		          forward = -slow;
 		        break;
 		      }
 

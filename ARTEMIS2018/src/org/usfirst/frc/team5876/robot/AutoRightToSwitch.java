@@ -20,18 +20,33 @@ public class AutoRightToSwitch extends AutoTemplate{
 		 
 	//if alliance colour is on right side of switch
 		 if(gameData.charAt(0)=='R') {
-			 boolean completed = fawkes.driveForward(168,5); //14 ft within 5 seconds
+			 boolean completed = fawkes.driveForward(236,5); //236 in within 5 seconds
 			 if (completed = true){
-			 completed = completed & fawkes.turn(-90,5); //turn right within 5 seconds
+			 completed = completed & fawkes.turn(-90,2); //turn right within 5 seconds
 			 }
 			 
 			 if (completed = true) {
-				completed = completed & fawkes.driveForward(80,5); //80 in within 5 seconds
+				completed = completed & fawkes.driveForward(58,5); //58 in within 5 seconds
 			 }
+			 
+			 if (completed = true){
+				 completed = completed & fawkes.turn(-90,2); //turn right within 5 seconds
+				 }
+			 
+			 if (completed = true) {
+					completed = completed & fawkes.driveForward(20,2); //20 in within 5 seconds
+				 }
+			 
+			 if (completed = true) {
+				fawkes.grabDaCube(); 
+				fawkes.liftLift();
+				completed = completed & fawkes.driveForward(20,2);
+				 }
 			 
 			 if (completed = true) {
 				fawkes.releaseDaCube();
 			 }
+			 
 			//continue with return to grab more cubes 
 		 }
 		 

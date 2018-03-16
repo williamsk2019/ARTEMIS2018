@@ -17,10 +17,10 @@ public class AutoManager {
     public void registerPlan(String planNameToCheck)
     {
         try{
-            Object object = null;
-            Class classDefinition = Class.forName(planNameToCheck);
-            object = classDefinition.newInstance();
-            AutoTemplate plan = (AutoTemplate) object; // temporary object to make sre the casting works
+//            Object object = null;
+//            Class classDefinition = Class.forName(planNameToCheck);
+//            object = classDefinition.newInstance();
+//            AutoTemplate plan = (AutoTemplate) object; // temporary object to make sre the casting works
 
             //if we get to this point, then it should be ok to create the plan as no errors were thrown
             registeredPlans.add(planNameToCheck);

@@ -98,7 +98,7 @@ public class ArtemisBot {
 		  encoderLeft.reset();
 		  Timer timerDrive = new Timer();
 		  timerDrive.start();
-		  encoderLeft.setDistancePerPulse(18.85); //18.85 = distance of rotation 
+		  encoderLeft.setDistancePerPulse(18.85/2048.0); //18.85 = distance of rotation 
 		  
 		  double travel = encoderLeft.getDistance(); //amount travelled
 
@@ -109,7 +109,7 @@ public class ArtemisBot {
 		  if (timerDrive.get() < timeout) {
 			  return true; //completed within timeout limit
 		  }
-		  else {
+		  else { 
 			  return false; //oh no too slow
 		  }
 	  } //end void driveForward()
@@ -118,7 +118,7 @@ public class ArtemisBot {
 		  encoderLeft.reset();
 		  Timer timerDrive = new Timer();
 		  timerDrive.start();
-		  encoderLeft.setDistancePerPulse(18.85); //18.85 = distance of rotation 
+		  encoderLeft.setDistancePerPulse(18.85/2048.0); //18.85 = distance of rotation 
 		  
 		  double travel = encoderLeft.getDistance(); //amount travelled
 		  
