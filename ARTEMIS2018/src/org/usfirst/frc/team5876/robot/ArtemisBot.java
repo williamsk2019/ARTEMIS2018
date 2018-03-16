@@ -183,7 +183,7 @@ public class ArtemisBot {
 	
 	void unliftLift() {
 		//lifts stuff down
-		liftMotor.set(-0.3);
+		liftMotor.set(-0.4);
 	}
 	
 	void stopLift() {
@@ -191,13 +191,13 @@ public class ArtemisBot {
 	}
 	
 	void lobsterWheelsIn() {
-		rightLobsterWheels.set(-1);
-    	leftLobsterWheels.set(1);
+		rightLobsterWheels.set(-0.8);
+    	leftLobsterWheels.set(0.8);
 	}
 	
 	void lobsterWheelsOut() {
-		rightLobsterWheels.set(1);
-    	leftLobsterWheels.set(-1);
+		rightLobsterWheels.set(0.8);
+    	leftLobsterWheels.set(-0.8);
 	}
 
 	void lobsterWheelsStop() {

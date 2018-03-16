@@ -78,26 +78,26 @@ public class RobotMain extends IterativeRobot {
         
         selectedAutonomous = new AutoDriveForward();
         
-        if (autoSelection == "AutoCentreToSwitch"){
-        	selectedAutonomous = new AutoCentreToSwitch();
-        }
-        
-        else if (autoSelection == "AutoDriveForward") {
-        	selectedAutonomous = new AutoDriveForward();
-        }
-        
-        else if (autoSelection == "AutoLeftToSwitch") {
-        	selectedAutonomous = new AutoLeftToSwitch();
-        }
-        
-        else if (autoSelection == "AutoRightToSwitch") {
-        	selectedAutonomous = new AutoRightToSwitch();
-        }
-        
-        else if (autoSelection == "AutoLeftToSwitchTimer") {
-        	selectedAutonomous = new AutoLeftToSwitchTimer();
-        }
-       // selectedAutonomous = new AutoRightToSwitchTimer();
+//        if (autoSelection == "AutoCentreToSwitch"){
+//        	selectedAutonomous = new AutoCentreToSwitch();
+//        }
+//        
+//        else if (autoSelection == "AutoDriveForward") {
+//        	selectedAutonomous = new AutoDriveForward();
+//        }
+//        
+//        else if (autoSelection == "AutoLeftToSwitch") {
+//        	selectedAutonomous = new AutoLeftToSwitch();
+//        }
+//        
+//        else if (autoSelection == "AutoRightToSwitch") {
+//        	selectedAutonomous = new AutoRightToSwitch();
+//        }
+//        
+//        else if (autoSelection == "AutoLeftToSwitchTimer") {
+//        	selectedAutonomous = new AutoLeftToSwitchTimer();
+//        }
+//       // selectedAutonomous = new AutoRightToSwitchTimer();
         
         System.out.println("Running Auto Init Code...");
 

@@ -13,7 +13,7 @@ public class Controls {
 	public Controls()
 	{
 		joystickLeft = new Joystick(0);
-		joystickRight = new Joystick(1);
+		joystickRight = new Joystick(1);;
 		gamepadController = new XboxController(2);
 	}
 	
