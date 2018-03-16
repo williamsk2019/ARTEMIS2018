@@ -82,50 +82,37 @@ public class Controls {
 		    */
 		    
 		    //code for intake/delivery
-		    if (joystickRight.getRawButton(1)==true){
+		    if (gamepadController.getRawButton(5)==true){
 		    	// clamp claw
 		    	fawkes.grabDaCube();
 		    }
 		    
-		    else if(joystickRight.getRawButton(2)==true) { //change to gamepad
+		    else if(gamepadController.getRawButton(6)==true) { //change to gamepad
 		    	//release claw
 		    	fawkes.releaseDaCube();
 		    }
 		    
-		    if(joystickRight.getRawButton(3)==true) {
+		    if(gamepadController.getXButton()==true) {
 		     	//wheels in
 		    	fawkes.lobsterWheelsIn();
 		     }
 		    
-		    else if (gamepadController.getYButtonPressed() == true)
+		    else if (gamepadController.getBButton() == true)
 		    {
 		    	//Wheels out
 		    	fawkes.lobsterWheelsOut();
 		    }
-		    else if (joystickRight.getRawButton(2)==false && gamepadController.getYButtonPressed()==false ) {
+		    else if (gamepadController.getXButton()==false && gamepadController.getBButton()==false ) {
 		    	//stop wheels automatically
 		    	fawkes.lobsterWheelsStop();	
-		    }
-
-		    if (gamepadController.getRawButton(5) == true) {
-		    	//stop wheels manually
-		    	fawkes.lobsterWheelsStop();
-		    }
-	
+		    }			    
 		    
-		    if (gamepadController.getBButtonPressed() == true)
-		    {
-		    	//Lobster claws release
-		    	fawkes.releaseDaCube();
-		    }
-		    
-		    
-		    if (gamepadController.getAButtonPressed() == true)
+		    if (gamepadController.getAButton() == true)
 		    {
 		        fawkes.liftLift();    	
 		        
 		    }
-		    else if (gamepadController.getXButtonPressed() == true)
+		    else if (gamepadController.getYButton() == true)
 		    {
 		    	fawkes.unliftLift();
 		    }
