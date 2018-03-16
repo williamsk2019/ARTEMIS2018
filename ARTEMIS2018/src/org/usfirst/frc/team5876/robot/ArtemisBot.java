@@ -71,7 +71,7 @@ public class ArtemisBot {
 	    compressor1.start();
 	
 	    doubleSolenoidLifter = new DoubleSolenoid(2, 3);
-	    doubleSolenoidLifter.set(DoubleSolenoid.Value.kOff);
+	    doubleSolenoidLifter.set(DoubleSolenoid.Value.kReverse);
 	
 	    accel = new BuiltInAccelerometer();
 	
@@ -107,6 +107,7 @@ public class ArtemisBot {
 			  travel = encoderLeft.getDistance();
 		  }
 		  if (timerDrive.get() < timeout) {
+			  robotDriveBase.arcadeDrive(0, 0);
 			  return true; //completed within timeout limit
 		  }
 		  else { 
@@ -177,7 +178,7 @@ public class ArtemisBot {
 	
 	void liftLift() {
 		//lifts stuff
-		liftMotor.set(0.3);
+		liftMotor.set(1);
 	}
 	
 	void unliftLift() {
@@ -190,13 +191,13 @@ public class ArtemisBot {
 	}
 	
 	void lobsterWheelsIn() {
-		rightLobsterWheels.set(-0.2);
-    	leftLobsterWheels.set(0.2);
+		rightLobsterWheels.set(-1);
+    	leftLobsterWheels.set(1);
 	}
 	
 	void lobsterWheelsOut() {
-		rightLobsterWheels.set(0.2);
-    	leftLobsterWheels.set(-0.2);
+		rightLobsterWheels.set(1);
+    	leftLobsterWheels.set(-1);
 	}
 
 	void lobsterWheelsStop() {
