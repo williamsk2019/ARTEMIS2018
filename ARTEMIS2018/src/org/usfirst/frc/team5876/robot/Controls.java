@@ -102,7 +102,11 @@ public class Controls {
 		    	//Wheels out
 		    	fawkes.lobsterWheelsOut();
 		    }
-		    else if (gamepadController.getXButton()==false && gamepadController.getBButton()==false ) {
+		    
+		    else if (gamepadController.getStartButton() == true) {
+		    	fawkes.lobsterWheelsOutSlow();
+		    }
+		    else if (gamepadController.getXButton()==false && gamepadController.getBButton()==false && gamepadController.getStartButton() == false ) {
 		    	//stop wheels automatically
 		    	fawkes.lobsterWheelsStop();	
 		    }			    

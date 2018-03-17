@@ -41,10 +41,10 @@ public class ArtemisBot {
 	  SpeedController liftMotor;
 	
 	  //timer
-	  Timer timer;
+	  Timer timer;								 
 	  
 	public ArtemisBot() {
-		// set up individual drive motors
+		// set up individual drive motors;
 	    motorDriveLeftFront =     new VictorSP(0);
 	    motorDriveLeftBack =      new VictorSP(1);
 	
@@ -183,7 +183,7 @@ public class ArtemisBot {
 	
 	void unliftLift() {
 		//lifts stuff down
-		liftMotor.set(-0.4);
+		liftMotor.set(-0.6);
 	}
 	
 	void stopLift() {
@@ -191,13 +191,17 @@ public class ArtemisBot {
 	}
 	
 	void lobsterWheelsIn() {
-		rightLobsterWheels.set(-0.8);
-    	leftLobsterWheels.set(0.8);
+		rightLobsterWheels.set(-1);
+    	leftLobsterWheels.set(1);
 	}
 	
 	void lobsterWheelsOut() {
-		rightLobsterWheels.set(0.8);
-    	leftLobsterWheels.set(-0.8);
+		rightLobsterWheels.set(1);
+    	leftLobsterWheels.set(-1);
+	}
+	void lobsterWheelsOutSlow(){
+		rightLobsterWheels.set(0.5);
+		leftLobsterWheels.set(-0.5);
 	}
 
 	void lobsterWheelsStop() {

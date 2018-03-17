@@ -17,7 +17,7 @@ public class AutoCentreToSwitch extends AutoTemplate{
     public void autonomousPeriodicCode(ArtemisBot fawkes){
     	 System.out.println("Position 2 (centre)");
 		 System.out.println("X=" + fawkes.accel.getX() + ", Y=" + fawkes.accel.getY() + ", Z=" + fawkes.accel.getZ() + ", gyro=" + fawkes.gyro.getAngle());
-
+		 System.out.println(gameData);
 	//if alliance colour is on right of switch
 		 if(gameData.charAt(0)=='R') {
 			 

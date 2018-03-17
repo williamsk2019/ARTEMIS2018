@@ -20,6 +20,7 @@ public class AutoDriveForward extends AutoTemplate{
     public void autonomousPeriodicCode(ArtemisBot fawkes){
     	System.out.println("Baseline");
 		 System.out.println("X=" + fawkes.accel.getX() + ", Y=" + fawkes.accel.getY() + ", Z=" + fawkes.accel.getZ() + ", gyro=" + fawkes.gyro.getAngle());
+		 System.out.println(gameData);
 		 if (hasRunAuto == false) {
 		 fawkes.driveForward(132, 15);
 		 hasRunAuto = true;

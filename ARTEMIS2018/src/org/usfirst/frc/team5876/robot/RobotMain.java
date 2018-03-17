@@ -76,7 +76,8 @@ public class RobotMain extends IterativeRobot {
 
     //selectedAutonomous = autonomousPlans.getAutoPlan(autoSelection);
         
-        selectedAutonomous = new AutoDriveForward();
+       selectedAutonomous = new AutoDriveForward();
+       // selectedAutonomous = new AutoLeftToSwitch();
         
 //        if (autoSelection == "AutoCentreToSwitch"){
 //        	selectedAutonomous = new AutoCentreToSwitch();
@@ -110,7 +111,7 @@ public class RobotMain extends IterativeRobot {
 
   /**
    * this function is called multiple times during autonomous. In this function,
-   * get all inputs, check timers, and then adjust robot movements as needed
+   * get all inputs, check timers, and then adjust robout movements as needed
    * based on checks / timers / stage in process
    */
   @Override
@@ -118,6 +119,7 @@ public class RobotMain extends IterativeRobot {
 
    System.out.println("Running Auto Periodic Code");
    selectedAutonomous.autonomousPeriodicCode(robot);
+   
 
   } // end autonomousPeriodic()
 

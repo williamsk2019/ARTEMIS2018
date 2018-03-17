@@ -17,6 +17,7 @@ public class AutoLeftToSwitch extends AutoTemplate{
     public void autonomousPeriodicCode(ArtemisBot fawkes){
     	 System.out.println("Position 1 (left)");
 		 System.out.println("X=" + fawkes.accel.getX() + ", Y=" + fawkes.accel.getY() + ", Z=" + fawkes.accel.getZ() + ", gyro=" + fawkes.gyro.getAngle());
+		 System.out.println(gameData);
 		 
 		 //if alliance colour is on left of switch
 		 if(gameData.charAt(0)=='L') {
@@ -45,6 +46,7 @@ public class AutoLeftToSwitch extends AutoTemplate{
 			 
 			 if (completed = true) {
 				fawkes.releaseDaCube();
+				fawkes.unliftLift();
 			 }
 			 
 			
@@ -53,7 +55,7 @@ public class AutoLeftToSwitch extends AutoTemplate{
 		 
 		 //otherwise drive forward over baseline
 		 else {
-			fawkes.driveForwardWithGyro(120, 15);
+			fawkes.driveForward(120, 15);
 		 }
     }
 	
