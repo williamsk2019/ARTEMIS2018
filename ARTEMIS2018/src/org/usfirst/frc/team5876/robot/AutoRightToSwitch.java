@@ -23,7 +23,7 @@ public class AutoRightToSwitch extends AutoTemplate{
 		 if(gameData.charAt(0)=='R') {
 			 boolean completed = fawkes.driveForward(236,5); //236 in within 5 seconds
 			 if (completed = true){
-			 completed = completed & fawkes.turn(-90,2); //turn right within 5 seconds
+			 completed = completed & fawkes.turn(-90,2); //turn right within 2 seconds
 			 }
 			 
 			 if (completed = true) {

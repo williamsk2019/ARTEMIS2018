@@ -181,6 +181,17 @@ public class ArtemisBot {
 		liftMotor.set(1);
 	}
 	
+	void liftLift(float speed) {
+		//lifts stuff
+		
+		if((speed >1) || (speed < -1))
+		{
+			liftMotor.set(0);
+		}else {
+			liftMotor.set(speed);
+		}
+	}
+	
 	void unliftLift() {
 		//lifts stuff down
 		liftMotor.set(-0.6);
