@@ -202,17 +202,17 @@ public class ArtemisBot {
 	}
 	
 	void lobsterWheelsIn() {
-		rightLobsterWheels.set(-1);
-    	leftLobsterWheels.set(1);
-	}
-	
-	void lobsterWheelsOut() {
 		rightLobsterWheels.set(1);
     	leftLobsterWheels.set(-1);
 	}
+	
+	void lobsterWheelsOut() {
+		rightLobsterWheels.set(-1);
+    	leftLobsterWheels.set(1);
+	}
 	void lobsterWheelsOutSlow(){
-		rightLobsterWheels.set(0.5);
-		leftLobsterWheels.set(-0.5);
+		rightLobsterWheels.set(-0.5);
+		leftLobsterWheels.set(0.5);
 	}
 
 	void lobsterWheelsStop() {
