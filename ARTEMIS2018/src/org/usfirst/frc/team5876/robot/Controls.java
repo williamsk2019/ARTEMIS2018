@@ -103,9 +103,9 @@ public class Controls {
 		    	fawkes.lobsterWheelsOut();
 		    }
 		    
-		    else if (gamepadController.getStartButton() == true) {
-		    	fawkes.lobsterWheelsOutSlow();
-		    }
+//		    else if (gamepadController.getStartButton() == true) {
+//		    	fawkes.lobsterWheelsOutSlow();
+//		    }
 		    else if (gamepadController.getXButton()==false && gamepadController.getBButton()==false && gamepadController.getStartButton() == false ) {
 		    	//stop wheels automatically
 		    	fawkes.lobsterWheelsStop();	
@@ -116,6 +116,11 @@ public class Controls {
 		        fawkes.liftLift();    	
 		        
 		    }
+		    
+		    else if (gamepadController.getStartButton() == true){
+		    	fawkes.liftLift(0.3);
+		    }
+		    
 		    else if (gamepadController.getYButton() == true)
 		    {
 		    	fawkes.unliftLift();

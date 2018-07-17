@@ -210,7 +210,7 @@ public class ArtemisBot {
 		liftMotor.set(1);
 	}
 
-	void liftLift(float speed) {
+	void liftLift(double speed) {
 		//lifts stuff
 
 		if((speed >1) || (speed < -1))
@@ -220,7 +220,7 @@ public class ArtemisBot {
 			liftMotor.set(speed);
 		}
 	}
-
+	
 	void unliftLift() {
 		//lifts stuff down
 		liftMotor.set(-0.6);
