@@ -2,12 +2,12 @@ package org.usfirst.frc.team5876.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 
-public class AutoDriveForward extends AutoTemplate{
+public class AutoDriveBackward extends AutoTemplate{
 	
 	 String gameData;
 	 boolean hasRunAuto;
 	
-	public AutoDriveForward() {
+	public AutoDriveBackward() {
 		
 		 gameData = DriverStation.getInstance().getGameSpecificMessage();
 		 hasRunAuto = false;
@@ -18,11 +18,12 @@ public class AutoDriveForward extends AutoTemplate{
     	fawkes.prepareForAuto();
     }
     public void autonomousPeriodicCode(ArtemisBot fawkes){
-    	System.out.println("Baseline");
-		 System.out.println("X=" + fawkes.accel.getX() + ", Y=" + fawkes.accel.getY() + ", Z=" + fawkes.accel.getZ() + ", gyro=" + fawkes.gyro.getAngle());
+    	
 		 System.out.println(gameData);
+		 System.out.println("Backward");
+		 System.out.println("X=" + fawkes.accel.getX() + ", Y=" + fawkes.accel.getY() + ", Z=" + fawkes.accel.getZ() + ", gyro=" + fawkes.gyro.getAngle());
 		 if (hasRunAuto == false) {
-		 fawkes.driveForward(132, 15);
+		 fawkes.driveBackward(132, 15);
 		 hasRunAuto = true;
 		 }
 		 else {

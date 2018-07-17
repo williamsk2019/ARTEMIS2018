@@ -47,6 +47,17 @@ public class RobotMain extends IterativeRobot {
       System.out.println("unable to add --forward-- to auto chooser... perhaps there is a code error in that auto class?");
       e.printStackTrace();
     }
+    
+    //-------------------------
+    //lets add a default option.
+    //-------------------------
+    try{
+      autonomousCodeChooser.addDefault("backward",new AutoDriveBackward());
+    }
+    catch(Exception e){
+      System.out.println("unable to add --backward-- to auto chooser... perhaps there is a code error in that auto class?");
+      e.printStackTrace();
+    }
 
     //-------------------------
     //lets add an auto to go to the switch from the centre.
@@ -63,7 +74,7 @@ public class RobotMain extends IterativeRobot {
     //lets add an auto to start from the left side.
     //-------------------------
     try{
-      autonomousCodeChooser.addDefault("fromLeftSide",new AutopFromLeftSide());
+      autonomousCodeChooser.addDefault("fromLeftSide",new AutoFromLeftSide());
     }
     catch(Exception e){
       System.out.println("unable to add --fromLeftSide-- to auto chooser... perhaps there is a code error in that auto class?");
@@ -93,7 +104,7 @@ public class RobotMain extends IterativeRobot {
 
     System.out.println("Getting Auto selection from dashboard...");
 
-    selectedAutonomous = (AutoTemplate) chooser.getSelected();
+    selectedAutonomous = (AutoTemplate) autonomousCodeChooser.getSelected();
 
     if(selectedAutonomous!=null){
       System.out.println("Selected Autonomous is Loaded... and not empty");

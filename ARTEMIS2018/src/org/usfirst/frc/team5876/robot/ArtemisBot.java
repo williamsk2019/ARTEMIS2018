@@ -121,6 +121,28 @@ public class ArtemisBot {
 			  return false; //oh no too slow
 		  }
 	  } //end void driveForward()
+	
+	boolean driveBackward(int distance , double timeout) { //function to reach goal distance (inches)
+		  encoderLeft.reset();
+		  Timer timerDrive = new Timer();
+		  timerDrive.start();
+		  encoderLeft.setDistancePerPulse(18.85/2048.0); //18.85 = distance of rotation
+
+		  double travel = -(encoderLeft.getDistance()); //amount travelled
+
+		  while(travel < distance && timerDrive.get() < timeout) { //allows amount travelled to reach goal distance
+			  robotDriveBase.arcadeDrive( -0.5 , 0);
+			  travel = encoderLeft.getDistance();
+		  }
+		  if (timerDrive.get() < timeout) {
+			  robotDriveBase.arcadeDrive(0, 0);
+			  return true; //completed within timeout limit
+		  }
+		  else {
+			  return false; //oh no too slow
+		  }
+	  } //end void driveBackward()
+	
 
 	  boolean driveForwardWithGyro(int distance , double timeout) { //function to reach goal distance (inches)
 		  encoderLeft.reset();
