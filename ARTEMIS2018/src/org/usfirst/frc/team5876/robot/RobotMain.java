@@ -11,8 +11,8 @@ public class RobotMain extends IterativeRobot {
 
   Controls driverStationControllers;
   ArtemisBot fawkes;
-//  AutoManager autonomousPlans;
-//  AutoTemplate selectedAutonomous;
+  AutoManager autonomousPlans;
+  AutoTemplate selectedAutonomous;
   Timer robotTimer;
 
   //now we need the autonomous mode chooser....
@@ -21,7 +21,7 @@ public class RobotMain extends IterativeRobot {
    * Variables needed for Autonomous
    */
   String autoSelection;
-  SendableChooser<String> chooser = new SendableChooser<String>();
+  SendableChooser autonomousCodeChooser = new SendableChooser();
 
   /**
    * set up the robot parameters, cameras, etc... once it is turned on.
@@ -34,30 +34,52 @@ public class RobotMain extends IterativeRobot {
     //the joystick controlls and mappings for instructions
     driverStationControllers = new Controls();
 
-    //the collection of autonomous plans (classes)
-//    autonomousPlans = new AutoManager();
-//    autonomousPlans.registerPlan("AutoCentreToSwitch");
-//    autonomousPlans.registerPlan("AutoDriveForward");
-//    autonomousPlans.registerPlan("AutoLeftToSwitch");
-//    autonomousPlans.registerPlan("AutoRightToSwitch");
-//    autonomousPlans.registerPlan("AutoRightToSwitchTimer");
-//    autonomousPlans.registerPlan("AutoLeftToSwitchTimer");
-//
-//
-//    //get the list of registered auto classes and send them as options for the SmartDashboard selector
-//   ArrayList<String> autonomousPlansList = autonomousPlans.getRegisteredPlansList();
-//
-//  for ( String planName : autonomousPlansList) {
-//      chooser.addObject(planName, planName);
+    /**
+     * Auto code section to add different autonomous plans (without code crashing if error)
+     */
+    //-------------------------
+    //lets add a default option.
+    //-------------------------
+    try{
+      autonomousCodeChooser.addDefault("forward",new AutoDriveForward());
     }
-//
-//    SmartDashboard.putData("Auto choices", chooser);
-//    
-//    robotTimer = new Timer();
-//    robotTimer.start();
-    
+    catch(Exception e){
+      System.out.println("unable to add --forward-- to auto chooser... perhaps there is a code error in that auto class?");
+      e.printStackTrace();
+    }
 
-  //} // end robotInit()
+    //-------------------------
+    //lets add an auto to go to the switch from the centre.
+    //-------------------------
+    try{
+      autonomousCodeChooser.addDefault("centreToSwitch",new AutoCentreToSwitch());
+    }
+    catch(Exception e){
+      System.out.println("unable to add --centreToSwitch-- to auto chooser... perhaps there is a code error in that auto class?");
+      e.printStackTrace();
+    }
+
+    //-------------------------
+    //lets add an auto to start from the left side.
+    //-------------------------
+    try{
+      autonomousCodeChooser.addDefault("fromLeftSide",new AutopFromLeftSide());
+    }
+    catch(Exception e){
+      System.out.println("unable to add --fromLeftSide-- to auto chooser... perhaps there is a code error in that auto class?");
+      e.printStackTrace();
+    }
+
+    /*add more auto code choices here...*/
+
+    SmartDashboard.putData("AutoChoices",autonomousCodeChooser);
+
+    robotTimer = new Timer();
+    robotTimer.start();
+    // this will give time between init and auto init... gyro drift?
+
+
+  } // end robotInit()
 
 
 
@@ -67,47 +89,28 @@ public class RobotMain extends IterativeRobot {
    */
   @Override
   public void autonomousInit() {
-	fawkes.prepareForAuto();
-	
+	  fawkes.prepareForAuto();
 
-//        System.out.println("Getting Auto selection from dashboard");
-//
-//    autoSelection = chooser.getSelected();
-//
-//        System.out.println("Auto selected was: " + autoSelection);
-//        System.out.println("Loading Auto Plan...");
-//
-//    //selectedAutonomous = autonomousPlans.getAutoPlan(autoSelection);
-//        
-//       selectedAutonomous = new AutoDriveForward();
-       // selectedAutonomous = new AutoLeftToSwitch();
-        
-//        if (autoSelection == "AutoCentreToSwitch"){
-//        	selectedAutonomous = new AutoCentreToSwitch();
-//        }
-//        
-//        else if (autoSelection == "AutoDriveForward") {
-//        	selectedAutonomous = new AutoDriveForward();
-//        }
-//        
-//        else if (autoSelection == "AutoLeftToSwitch") {
-//        	selectedAutonomous = new AutoLeftToSwitch();
-//        }
-//        
-//        else if (autoSelection == "AutoRightToSwitch") {
-//        	selectedAutonomous = new AutoRightToSwitch();
-//        }
-//        
-//        else if (autoSelection == "AutoLeftToSwitchTimer") {
-//        	selectedAutonomous = new AutoLeftToSwitchTimer();
-//        }
-//       // selectedAutonomous = new AutoRightToSwitchTimer();
-//        
-//        System.out.println("Running Auto Init Code...");
-//
-//    selectedAutonomous.autonomousInitCode(robot);
-//
-//       System.out.println("Auto Init Code Completed!");
+    System.out.println("Getting Auto selection from dashboard...");
+
+    selectedAutonomous = (AutoTemplate) chooser.getSelected();
+
+    if(selectedAutonomous!=null){
+      System.out.println("Selected Autonomous is Loaded... and not empty");
+    }
+    else{
+      System.out.println("ALERT: Selected Autonomous is empty????");
+      System.out.println("ALERT: Selected Autonomous is empty????");
+      System.out.println("ALERT: Selected Autonomous is empty????");
+      System.out.println("ALERT: Selected Autonomous is empty????");
+      System.out.println("ALERT: Selected Autonomous is empty????");
+    }
+
+    System.out.println("Running Auto Init Code...");
+
+    selectedAutonomous.autonomousInitCode(fawkes); //TODO: this shouyld be fawkes!!!!!
+
+    System.out.println("Auto Init Code Completed!");
 
   } // end autonomousInit()
 
@@ -119,39 +122,9 @@ public class RobotMain extends IterativeRobot {
    */
   @Override
   public void autonomousPeriodic() {
-	  System.out.println("Glow Dance");
 
-			fawkes.grabDaCube();
-			fawkes.releaseDaCube();
-			fawkes.driveForward(0,1.);
-			fawkes.grabDaCube();
-			fawkes.releaseDaCube();
-			fawkes.driveForward(0,1);
-			
-			fawkes.liftLift();
-			fawkes.driveForward(20, 2);
-			fawkes.stopLift();
-			fawkes.driveForward(0,1);
-			fawkes.unliftLift();
-			fawkes.driveForward(-20, 2);
-			fawkes.stopLift();
-			fawkes.driveForward(0,1);
-			
-			fawkes.turn(90, 5);
-			
-			fawkes.liftLift();
-			fawkes.driveForward(20, 2);
-			fawkes.stopLift();
-			fawkes.driveForward(0,1);
-			fawkes.unliftLift();
-			fawkes.driveForward(-20, 2);
-			fawkes.stopLift();
-			fawkes.driveForward(0,1);
-			
-		  
-//   System.out.println("Running Auto Periodic Code");
-//   selectedAutonomous.autonomousPeriodicCode(robot);
-//   
+    System.out.println("Running Auto Periodic Code");
+    selectedAutonomous.autonomousPeriodicCode(fawkes);
 
 } // end autonomousPeriodic()
 
@@ -170,6 +143,9 @@ public class RobotMain extends IterativeRobot {
 
   @Override
   public void testPeriodic() {
+
+    //driverStationControllers.updateControls(fawkes);
+    //
   } // end testPeriodic()
 
 } // end RobotMain class definitions
