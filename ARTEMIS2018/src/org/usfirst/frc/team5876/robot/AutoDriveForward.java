@@ -22,11 +22,11 @@ public class AutoDriveForward extends AutoTemplate{
 		 System.out.println("X=" + fawkes.accel.getX() + ", Y=" + fawkes.accel.getY() + ", Z=" + fawkes.accel.getZ() + ", gyro=" + fawkes.gyro.getAngle());
 		 System.out.println(gameData);
 		 if (hasRunAuto == false) {
-		 fawkes.driveForward(132, 15);
+		 fawkes.driveForward(142, 15);
 		 hasRunAuto = true;
 		 }
 		 else {
-			 fawkes.robotDriveBase.arcadeDrive(0,0);
+			 fawkes.driveForward(0,0);
 		 }
     }
 	

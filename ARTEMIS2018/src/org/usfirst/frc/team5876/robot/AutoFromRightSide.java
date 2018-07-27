@@ -38,7 +38,7 @@ public class AutoFromRightSide extends AutoTemplate{
 		 hasRunAuto = true;
 		 }
 		 else {
-			 fawkes.robotDriveBase.arcadeDrive(0,0);
+			 fawkes.driveForward(0,0);
 		 }
     }
 	
