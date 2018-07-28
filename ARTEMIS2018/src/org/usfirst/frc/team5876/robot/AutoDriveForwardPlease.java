@@ -23,7 +23,7 @@ public class AutoDriveForwardPlease extends AutoTemplate{
 		 System.out.println("X=" + fawkes.accel.getX() + ", Y=" + fawkes.accel.getY() + ", Z=" + fawkes.accel.getZ() + ", gyro=" + fawkes.gyro.getAngle());
 		 System.out.println(gameData);
 		 if (hasRunAuto == false) {
-		 fawkes.driveForward(152, 15);
+		 fawkes.driveForward(152, 8);
 		 hasRunAuto = true;
 		 }
 		 else {

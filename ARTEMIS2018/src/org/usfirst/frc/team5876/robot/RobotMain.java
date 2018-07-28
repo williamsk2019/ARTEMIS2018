@@ -41,7 +41,7 @@ public class RobotMain extends IterativeRobot {
     //lets add a default option.
     //-------------------------
     try{
-      autonomousCodeChooser.addDefault("forward",new AutoDriveForwardPlease());
+      autonomousCodeChooser.addDefault("forwardplz",new AutoDriveForwardPlease());
     }
     catch(Exception e){
       System.out.println("unable to add --forward-- to auto chooser... perhaps there is a code error in that auto class?");
