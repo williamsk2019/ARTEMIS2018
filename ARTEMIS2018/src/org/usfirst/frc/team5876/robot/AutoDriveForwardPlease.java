@@ -2,12 +2,12 @@ package org.usfirst.frc.team5876.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 
-public class AutoDriveForward extends AutoTemplate{
+public class AutoDriveForwardPlease extends AutoTemplate{
 	
 	 String gameData;
 	 boolean hasRunAuto;
 	
-	public AutoDriveForward() {
+	public AutoDriveForwardPlease() {
 		
 		 gameData = DriverStation.getInstance().getGameSpecificMessage();
 		 hasRunAuto = false;
@@ -16,6 +16,7 @@ public class AutoDriveForward extends AutoTemplate{
 	
     public void autonomousInitCode(ArtemisBot fawkes){
     	fawkes.prepareForAuto();
+    	System.out.println("Plz let the robot go over the baseline. Plz");
     }
     public void autonomousPeriodicCode(ArtemisBot fawkes){
     	System.out.println("Baseline");

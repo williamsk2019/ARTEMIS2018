@@ -41,7 +41,7 @@ public class RobotMain extends IterativeRobot {
     //lets add a default option.
     //-------------------------
     try{
-      autonomousCodeChooser.addDefault("forward",new AutoDriveForward());
+      autonomousCodeChooser.addDefault("forward",new AutoDriveForwardPlease());
     }
     catch(Exception e){
       System.out.println("unable to add --forward-- to auto chooser... perhaps there is a code error in that auto class?");
@@ -51,35 +51,35 @@ public class RobotMain extends IterativeRobot {
     //-------------------------
     //lets add a default option.
     //-------------------------
-    try{
-      autonomousCodeChooser.addDefault("backward",new AutoDriveBackward());
-    }
-    catch(Exception e){
-      System.out.println("unable to add --backward-- to auto chooser... perhaps there is a code error in that auto class?");
-      e.printStackTrace();
-    }
+//    try{
+//      autonomousCodeChooser.addDefault("backward",new AutoDriveBackward());
+//    }
+//    catch(Exception e){
+//      System.out.println("unable to add --backward-- to auto chooser... perhaps there is a code error in that auto class?");
+//      e.printStackTrace();
+//    }
 
     //-------------------------
     //lets add an auto to go to the switch from the centre.
     //-------------------------
-    try{
-      autonomousCodeChooser.addDefault("centreToSwitch",new AutoCentreToSwitch());
-    }
-    catch(Exception e){
-      System.out.println("unable to add --centreToSwitch-- to auto chooser... perhaps there is a code error in that auto class?");
-      e.printStackTrace();
-    }
-
-    //-------------------------
-    //lets add an auto to start from the left side.
-    //-------------------------
-    try{
-      autonomousCodeChooser.addDefault("fromLeftSide",new AutoFromLeftSide());
-    }
-    catch(Exception e){
-      System.out.println("unable to add --fromLeftSide-- to auto chooser... perhaps there is a code error in that auto class?");
-      e.printStackTrace();
-    }
+//    try{
+//      autonomousCodeChooser.addDefault("centreToSwitch",new AutoCentreToSwitch());
+//    }
+//    catch(Exception e){
+//      System.out.println("unable to add --centreToSwitch-- to auto chooser... perhaps there is a code error in that auto class?");
+//      e.printStackTrace();
+//    }
+//
+//    //-------------------------
+//    //lets add an auto to start from the left side.
+//    //-------------------------
+//    try{
+//      autonomousCodeChooser.addDefault("fromLeftSide",new AutoFromLeftSide());
+//    }
+//    catch(Exception e){
+//      System.out.println("unable to add --fromLeftSide-- to auto chooser... perhaps there is a code error in that auto class?");
+//      e.printStackTrace();
+//    }
 
     /*add more auto code choices here...*/
 

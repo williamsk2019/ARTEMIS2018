@@ -111,6 +111,7 @@ public class ArtemisBot {
 
 		  while(travel < distance && timerDrive.get() < timeout) { //allows amount travelled to reach goal distance
 			  robotDriveBase.arcadeDrive( 0.5 , 0);
+			  Timer.delay(0.01);
 			  travel = encoderLeft.getDistance();
 		  }
 		  if (timerDrive.get() < timeout) {
